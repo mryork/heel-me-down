@@ -1,0 +1,15 @@
+.card {
+    width: 50vw;
+    margin: 20vh 25vw 0;
+    padding: 3vw;
+    text-align: center;
+    display: inline-block;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+span {
+    float: left;
+}
