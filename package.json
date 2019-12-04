@@ -4,7 +4,7 @@
   "description": "Heel Me Down is a project for COMP 426.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js --prefix backend"
+    "start": "cd backend && npm install && cd .. && nodemon index.js --prefix backend"
   },
   "repository": {
     "type": "git",
