@@ -24,3 +24,5 @@ app.get("/check", (req, res) => {
     res.status(200);
     res.send("Welcome to Heel Me Down hosted by Carolina CloudApps!");
 })
+
+app.listen(port, () => { console.log("App listening on port 80!")})
