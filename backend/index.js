@@ -18,11 +18,11 @@ const app = express()
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static('../frontend'))
+app.use(express.static('./frontend'))
 
 app.get("/check", (req, res) => {
     res.status(200);
     res.send("Welcome to Heel Me Down hosted by Carolina CloudApps!");
 })
 
-app.listen(port, () => { console.log("App listening on port 80!")})
+app.listen(port, () => { console.log("App listening on port 8080!")})
