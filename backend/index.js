@@ -13,3 +13,14 @@ const client = new OAuth2Client(CLIENT_ID)
 // Define our express.js server
 const port = 80
 const app = express()
+
+// Setup our express server
+app.use(cookieParser())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static('../frontend'))
+
+app.get("/check", (req, res) => {
+    res.status(200);
+    res.send("Welcome to Heel Me Down hosted by Carolina CloudApps!");
+})
