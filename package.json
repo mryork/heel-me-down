@@ -1,0 +1,22 @@
+{
+  "name": "heel-me-down",
+  "version": "1.0.0",
+  "description": "Heel Me Down is a project for COMP 426.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mryork/heel-me-down.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mryork/heel-me-down/issues"
+  },
+  "homepage": "https://github.com/mryork/heel-me-down#readme",
+  "dependencies": {
+    "nodemon": "^2.0.1"
+  }
+}
