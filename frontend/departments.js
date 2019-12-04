@@ -588,1440 +588,564 @@ var depts = [
         name: "LAW VISITING ELSEWHERE"
     },
     {
-        code: "",
-        name: ""
+        code: "MAC",
+        name: "MASTERS OF ACCOUNTING"
     },
     {
-        code: "",
-        name: ""
+        code: "MACD",
+        name: "MACEDONIAN"
     },
     {
-        code: "",
-        name: ""
+        code: "MACF",
+        name: "MAC FEES"
     },
     {
-        code: "",
-        name: ""
+        code: "MASC",
+        name: "MARINE SCIENCE"
     },
     {
-        code: "",
-        name: ""
+        code: "MATH",
+        name: "MATHEMATICS"
     },
     {
-        code: "",
-        name: ""
+        code: "MATS",
+        name: "MATH SCIENCES"
     },
     {
-        code: "",
-        name: ""
+        code: "MAYA",
+        name: "YUCATEC MAYA LANGUAGE"
     },
     {
-        code: "",
-        name: ""
+        code: "MBA",
+        name: "MASTERS OF BUSINESS ADMIN"
     },
     {
-        code: "",
-        name: ""
+        code: "MCRO",
+        name: "MICROBIOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "MDPH",
+        name: "MD/PHD LONGITUDINAL ELECTIVE"
     },
     {
-        code: "",
-        name: ""
+        code: "MDSP",
+        name: "MEDICINAL SPANISH"
     },
     {
-        code: "",
-        name: ""
+        code: "MEDC",
+        name: "MEDICINAL CHEMISTRY"
     },
     {
-        code: "",
-        name: ""
+        code: "MEDF",
+        name: "MEDICINE FEES"
     },
     {
-        code: "",
-        name: ""
+        code: "MEDI",
+        name: "MEDICINE"
     },
     {
-        code: "",
-        name: ""
+        code: "MEJO",
+        name: "MEDIA AND JOURNALISM"
     },
     {
-        code: "",
-        name: ""
+        code: "MESE",
+        name: "INTERNAL MEDICINE SELECTIVE"
     },
     {
-        code: "",
-        name: ""
+        code: "MHCH",
+        name: "MATERNAL & CHLD HLTH"
     },
     {
-        code: "",
-        name: ""
+        code: "MNDG",
+        name: "GA STAT REPORT REGISTRATION"
     },
     {
-        code: "",
-        name: ""
+        code: "MNGT",
+        name: "MANAGEMENT AND SOCIETY"
     },
     {
-        code: "",
-        name: ""
+        code: "MODC",
+        name: "MODERN CIVILIZATION"
     },
     {
-        code: "",
-        name: ""
+        code: "MOPH",
+        name: "MOLECULAR PHARMACEUTICS"
     },
     {
-        code: "",
-        name: ""
+        code: "MOPL",
+        name: "MONTPELLIER"
     },
     {
-        code: "",
-        name: ""
+        code: "MSBS",
+        name: "MEDICAL SCHOOL BASIC SCIENCE"
     },
     {
-        code: "",
-        name: ""
+        code: "MTEC",
+        name: "MED TRANSLATIONAL EDUCATION"
     },
     {
-        code: "",
-        name: ""
+        code: "MTSC",
+        name: "MATERIAL SCIENCE"
     },
     {
-        code: "",
-        name: ""
+        code: "MUSC",
+        name: "MUSIC"
     },
     {
-        code: "",
-        name: ""
+        code: "NAVS",
+        name: "NAVAL SCIENCE"
     },
     {
-        code: "",
-        name: ""
+        code: "NBIO",
+        name: "NEUROSCIENCE"
     },
     {
-        code: "",
-        name: ""
+        code: "NCCU",
+        name: "N.C. CENTRAL UNIVERSITY"
     },
     {
-        code: "",
-        name: ""
+        code: "NCSU",
+        name: "N.C. STATE UNIVERSITY"
     },
     {
-        code: "",
-        name: ""
+        code: "NDSS",
+        name: "NEUODIAG & SLEEP DIS SCIENCE"
     },
     {
-        code: "",
-        name: ""
+        code: "NEUR",
+        name: "NEUROLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "NEUS",
+        name: "CLINICAL NEUROSCI SELECTIVE"
     },
     {
-        code: "",
-        name: ""
+        code: "NORW",
+        name: "NORWEGIAN"
     },
     {
-        code: "",
-        name: ""
+        code: "NSCI",
+        name: "NEUROSCIENCE"
     },
     {
-        code: "",
-        name: ""
+        code: "NURS",
+        name: "NURSING"
     },
     {
-        code: "",
-        name: ""
+        code: "NUSJ",
+        name: "NAT UNIV SINGAPORE JOINT PGRMS"
     },
     {
-        code: "",
-        name: ""
+        code: "NUTR",
+        name: "HEALTH NUTRITION"
     },
     {
-        code: "",
-        name: ""
+        code: "OBGN",
+        name: "OBSTETRICS & GYN"
     },
     {
-        code: "",
-        name: ""
+        code: "OCBM",
+        name: "ORAL AND CRANIOFACIAL BIOMED"
     },
     {
-        code: "",
-        name: ""
+        code: "OCCT",
+        name: "MED ALLIED HLTH PROF"
     },
     {
-        code: "",
-        name: ""
+        code: "OCSC",
+        name: "OCCUPATIONAL SCIENCE"
     },
     {
-        code: "",
-        name: ""
+        code: "OMED",
+        name: "OFFICES OF MEDICAL EDUCATION"
     },
     {
-        code: "",
-        name: ""
+        code: "OPER",
+        name: "DENTISTRY OPERATIVE"
     },
     {
-        code: "",
-        name: ""
+        code: "OPHT",
+        name: "OPHTHALMOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "ORAD",
+        name: "ORAL RADIOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "ORLN",
+        name: "ORIENTAL LANGUAGES"
     },
     {
-        code: "",
-        name: ""
+        code: "ORPA",
+        name: "ORAL PATHOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "ORSA",
+        name: "OPER RES & SYS ANAL"
     },
     {
-        code: "",
-        name: ""
+        code: "ORTH",
+        name: "ORTHODONTICS"
     },
     {
-        code: "",
-        name: ""
+        code: "ORTS",
+        name: "ORTHOPEDICS"
     },
     {
-        code: "",
-        name: ""
+        code: "OTOL",
+        name: "OTOLARYNGOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "PACE",
+        name: "PRACTICE ADVANCE & CLINICAL ED"
     },
     {
-        code: "",
-        name: ""
+        code: "PALP",
+        name: "PARASITOLOGY & LAB PRACTICE"
     },
     {
-        code: "",
-        name: ""
+        code: "PASC",
+        name: "PHYSICIAL ASSISTANT STUDIES"
     },
     {
-        code: "",
-        name: ""
+        code: "PATH",
+        name: "PATHOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "PATY",
+        name: "PATHOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "PEDI",
+        name: "PEDIATRICS"
     },
     {
-        code: "",
-        name: ""
+        code: "PEDO",
+        name: "PEDIATRIC DENTISTRY"
     },
     {
-        code: "",
-        name: ""
+        code: "PEDS",
+        name: "PEDIATRICS"
     },
     {
-        code: "",
-        name: ""
+        code: "PERI",
+        name: "PERIDONTOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "PERS",
+        name: "PERSONNEL ADMIN"
     },
     {
-        code: "",
-        name: ""
+        code: "PERU",
+        name: "INTERNATIONAL ELECTIVE IN PERU"
     },
     {
-        code: "",
-        name: ""
+        code: "PHCO",
+        name: "PHARMACOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "PHCY",
+        name: "PHARMACY (NON-DEPARTMENTAL)"
     },
     {
-        code: "",
-        name: ""
+        code: "PHED",
+        name: "HEALTH EDUCATION"
     },
     {
-        code: "",
-        name: ""
+        code: "PHIL",
+        name: "PHILOSOPHY"
     },
     {
-        code: "",
-        name: ""
+        code: "PHNU",
+        name: "PUBLIC HEALTH NURS"
     },
     {
-        code: "",
-        name: ""
+        code: "PHRS",
+        name: "PHARMACEUTICAL SCIENCES"
     },
     {
-        code: "",
-        name: ""
+        code: "PHYA",
+        name: "PHYSICAL ACTIVITIES"
     },
     {
-        code: "",
-        name: ""
+        code: "PHYI",
+        name: "PHYSIOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "PHYS",
+        name: "PHYSICS"
     },
     {
-        code: "",
-        name: ""
+        code: "PHYT",
+        name: "PHYSICAL THERAPY"
     },
     {
-        code: "",
-        name: ""
+        code: "PHYY",
+        name: "PHYSIOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "PLAN",
+        name: "CITY AND REGIONAL PLANNING"
     },
     {
-        code: "",
-        name: ""
+        code: "PLCY",
+        name: "PUBLIC POLICY"
     },
     {
-        code: "",
-        name: ""
+        code: "PLSH",
+        name: "POLISH"
     },
     {
-        code: "",
-        name: ""
+        code: "PLTM",
+        name: "TRANSATLANTIC MASTERS"
     },
     {
-        code: "",
-        name: ""
+        code: "PMED",
+        name: "PHYSICAL MEDI & REHABILITATION"
     },
     {
-        code: "",
-        name: ""
+        code: "POLI",
+        name: "POLITICAL SCIENCE"
     },
     {
-        code: "",
-        name: ""
+        code: "PORT",
+        name: "PORTUGESE"
     },
     {
-        code: "",
-        name: ""
+        code: "PROS",
+        name: "PROSTHODONTICS"
     },
     {
-        code: "",
-        name: ""
+        code: "PRSN",
+        name: "PERSIAN"
     },
     {
-        code: "",
-        name: ""
+        code: "PSNU",
+        name: "PSYCH/NEURO CLERKSHIP"
     },
     {
-        code: "",
-        name: ""
+        code: "PSYC",
+        name: "PSYCHOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "PSYY",
+        name: "PSYCHIATRY"
     },
     {
-        code: "",
-        name: ""
+        code: "PUBA",
+        name: "PUBLIC ADMINISTRATION"
     },
     {
-        code: "",
-        name: ""
+        code: "PUBH",
+        name: "PUBLIC HEALTH"
     },
     {
-        code: "",
-        name: ""
+        code: "PUPA",
+        name: "PUB. POLICY ANALYSIS"
     },
     {
-        code: "",
-        name: ""
+        code: "PWAD",
+        name: "PEACE WAR & DEFENSE"
     },
     {
-        code: "",
-        name: ""
+        code: "RADG",
+        name: "RADIOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "RADI",
+        name: "RADIOLOGIC SCIENCE"
     },
     {
-        code: "",
-        name: ""
+        code: "RADO",
+        name: "RADO"
     },
     {
-        code: "",
-        name: ""
+        code: "RADY",
+        name: "RADIOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "RECR",
+        name: "RECREATION AND LEISURE STUDIES"
     },
     {
-        code: "",
-        name: ""
+        code: "RELI",
+        name: "RELIGION STUDIES"
     },
     {
-        code: "",
-        name: ""
+        code: "RFIX",
+        name: "CONV RECORD FIX"
     },
     {
-        code: "",
-        name: ""
+        code: "RLGE",
+        name: "ROMANCE LANG. GRADUATE EXCH"
     },
     {
-        code: "",
-        name: ""
+        code: "ROBT",
+        name: "ROBERTSON SCHOLOARS PROGRAM"
     },
     {
-        code: "",
-        name: ""
+        code: "ROMA",
+        name: "ROMANIAN"
     },
     {
-        code: "",
-        name: ""
+        code: "ROML",
+        name: "ROMANCE LANGUAGES"
     },
     {
-        code: "",
-        name: ""
+        code: "RUES",
+        name: "RUSS & EAST EUROPEAN STUDIES"
     },
     {
-        code: "",
-        name: ""
+        code: "RUMA",
+        name: "RUMANIAN"
     },
     {
-        code: "",
-        name: ""
+        code: "RUSS",
+        name: "RUSSIAN"
     },
     {
-        code: "",
-        name: ""
+        code: "SADM",
+        name: "SOCIAL & ADMIN MED"
     },
     {
-        code: "",
-        name: ""
+        code: "SANS",
+        name: "SANSKRIT"
     },
     {
-        code: "",
-        name: ""
+        code: "SECR",
+        name: "SERBIAN AND CROATIAN"
     },
     {
-        code: "",
-        name: ""
+        code: "SEVI",
+        name: "SEVILLE (SPAIN)"
     },
     {
-        code: "",
-        name: ""
+        code: "SLAVE",
+        name: "SLAVIC LANGUAGES"
     },
     {
-        code: "",
-        name: ""
+        code: "SOCI",
+        name: "SOCIOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "SOCM",
+        name: "SOCIAL MEDICINE"
     },
     {
-        code: "",
-        name: ""
+        code: "SOWO",
+        name: "SOCIAL WORK"
     },
     {
-        code: "",
-        name: ""
+        code: "SPAN",
+        name: "SPANISH"
     },
     {
-        code: "",
-        name: ""
+        code: "SPCL",
+        name: "EXPERIENTIAL & SPECIAL STUDIES"
     },
     {
-        code: "",
-        name: ""
+        code: "SPHG",
+        name: "SCH OF PUBLIC HEALTH GENERAL"
     },
     {
-        code: "",
-        name: ""
+        code: "SPHS",
+        name: "SPEECH & HEARING SCIENCES"
     },
     {
-        code: "",
-        name: ""
+        code: "STA",
+        name: "SHORT TERM ABROAD"
     },
     {
-        code: "",
-        name: ""
+        code: "STOR",
+        name: "STATS AND OPERATIONS RESEARCH"
     },
     {
-        code: "",
-        name: ""
+        code: "SUOP",
+        name: "SUMMER EXPERIENTIAL OPPORTUNITY"
     },
     {
-        code: "",
-        name: ""
+        code: "SURS",
+        name: "CRITICAL CARE SELECT/SURGERY"
     },
     {
-        code: "",
-        name: ""
+        code: "SURY",
+        name: "SURGERY (MEDICINE)"
     },
     {
-        code: "",
-        name: ""
+        code: "SWAH",
+        name: "SWAHILI"
     },
     {
-        code: "",
-        name: ""
+        code: "SWED",
+        name: "SWEDISH"
     },
     {
-        code: "",
-        name: ""
+        code: "TAML",
+        name: "TAMIL"
     },
     {
-        code: "",
-        name: ""
+        code: "TAP",
+        name: "TRANSATLANTIC ABROAD PROGRAM"
     },
     {
-        code: "",
-        name: ""
+        code: "THAI",
+        name: "THAI LANGUAGE"
     },
     {
-        code: "",
-        name: ""
+        code: "TOXC",
+        name: "TOXICOLOGY"
     },
     {
-        code: "",
-        name: ""
+        code: "TRAN",
+        name: "ACADEMIC TRANSFER HOURS"
     },
     {
-        code: "",
-        name: ""
+        code: "TREQ",
+        name: "TRANSFER EQUIVALENCY"
     },
     {
-        code: "",
-        name: ""
+        code: "TRXN",
+        name: "TRANSITION CLERKSHIPS"
     },
     {
-        code: "",
-        name: ""
+        code: "TURK",
+        name: "TURKSIH"
     },
     {
-        code: "",
-        name: ""
+        code: "UKRN",
+        name: "UKRANIAN"
     },
     {
-        code: "",
-        name: ""
+        code: "UNCC",
+        name: "U.N.C. CHARLOTTE"
     },
     {
-        code: "",
-        name: ""
+        code: "UNCG",
+        name: "U.N.C. GREENSBORO"
     },
     {
-        code: "",
-        name: ""
+        code: "UNCO",
+        name: "UNC ONLINE"
     },
     {
-        code: "",
-        name: ""
+        code: "VIET",
+        name: "VIETNAMESE"
     },
     {
-        code: "",
-        name: ""
+        code: "WGST",
+        name: "WOMEN'S AND GENDER STUDIES"
     },
     {
-        code: "",
-        name: ""
+        code: "WOLO",
+        name: "WOLOF LANGUAGE"
     },
     {
-        code: "",
-        name: ""
+        code: "YAP",
+        name: "YEAR ABROAD PROGRAM"
     },
     {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""*/*/
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
-    },
-    {
-        code: "",
-        name: ""
+        code: "ZOOL",
+        name: "ZOOLOGY"
     }
 ];
  
