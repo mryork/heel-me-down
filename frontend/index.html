@@ -3,23 +3,44 @@
 <html>
     <head>
         <title>Heel-Me-Down</title>
+
+        <!-- Bulma css framework -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+        <!-- Open Sans font-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
-        <div id="topbar">
-            <button class="button" id="login">Log in</button>
-        </div>
-        <br>
-        <center>
-            <img id="logo" src="imgs/logo-large.png">
-            <h1>Heel-Me-Down</h1>
-            <div id="searchbar"> <!-- columns with divs -->
-                <input id="innersearch" maxlength="9" placeholder="e.g. ENGL 105L">
+        <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <a href="login/index.html">
+                            <button class="button is-info">Log In</button>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <a href="search-results/index.html">
-                <button class="button">Search</button>
-            </a>
-        </center>
+        </nav>
+        <div id="search" class="columns is-centered is-vcentered">
+            <div class="column is-half">
+                <img id="logo" src="imgs/logo-large.png">
+                <h1>Heel-Me-Down</h1>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-medium is-rounded" placeholder="e.g. ENGL 105L">
+                    <span class="icon is-left">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <span class="icon is-right"></span>
+                </div>
+                <a href="search-results/index.html">
+                    <button class="button">Search</button>
+                </a>
+            </div>
+        </div>
     </body>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/18fbdea687.js" crossorigin="anonymous"></script>
 </html>

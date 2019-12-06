@@ -1,6 +1,3 @@
-* {
-}
-
 html {
     overflow-y: hidden;
 }
@@ -25,39 +22,49 @@ body {
     to {background-color: yellow;}
 } */
 
+.navbar {
+    width: 100%;
+    height: 10%;
+    background-color: transparent;
+}
+
+#search {
+    margin: 0 auto;
+    text-align: center;
+}
+
 h1 {
-    font-size: 5vw;
+    font-size: 42pt;
+    /* font-size: 5vw; */
+    /* font-family: Tahoma; */
     color: #FFFFFF;
 }
 
-span {
-    color: #AAAAAA;
+#search {
+    height: 80%;
 }
 
-#searchbar {
-    background-image: url("imgs/search-bar.png");
-    background-repeat: no-repeat;
-    width: 416px;
-    height: 53px;
-    margin: 5px;
+#search .column {
+    background-color: rgba(0, 0, 0, .4);
+    border-radius: .5em;
 }
 
-#login {
-    margin: 15px;
+#search .control {
+    width: 80%;
+    margin-left: 10%;
+    border: transparent;
 }
 
-#topbar {
-    width: 100vw;
-}
-
-#innersearch {
-    background: transparent;
+#search input {
     border: transparent;
     text-align: center;
-    height: 100%;
-    font-size: 1.5rem;
 }
 
-input:focus {
-    outline: none;
+*:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#search .button {
+    margin: 1em 0;
 }

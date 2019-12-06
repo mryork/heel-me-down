@@ -2,7 +2,7 @@
 }
 
 body {
-    background-image: url("imgs/OldWell.png");
+    background-image: url("../imgs/OldWell.png");
     background-repeat: no-repeat;
     background-size: 100vw 100vh;
     height: 100vh;
@@ -21,11 +21,12 @@ span {
 .element::-webkit-scrollbar { width: 0 !important }
 
 #searchbar {
-    background-image: url("imgs/search-bar.png");
+    background-image: url("../imgs/search-bar.png");
     background-repeat: no-repeat;
-    width: 416px;
-    height: 53px;
-    margin: 5px;
+    background-size: contain;
+    /* width: 100px; */
+    /* height: 53px; */
+    margin: auto 5px;
 }
 
 #login {
