@@ -1,9 +1,5 @@
 body {
-    background-image: url("../imgs/OldWell.png");
-    background-repeat: no-repeat;
-    background-size: 100vw 100vh;
-    height: 100%;
-    width: 100%;
+    background-color: whitesmoke;
 }
 
 .navbar-brand img {
@@ -36,25 +32,8 @@ h1 {
     color: #FFFFFF;
 }
 
-span {
-    color: #AAAAAA;
-}
-
-.element::-webkit-scrollbar { width: 0 !important }
-
-#login {
-    margin: 15px;
-}
-
-#search-results {
-    /* overflow-y: scroll !important; */
-    height: 200px;
-    background: #DDDDDD;
-}
-
-#howmany {
-    width: 75vw;
-    margin: 10px 12.5vw 10px;
+#itemCount {
+    margin-top: .25em;
 }
 
 .listing {
@@ -62,11 +41,21 @@ span {
     border-radius: 5px;
     width: 75vw;
     height: 180px;
-    margin: 10px 12.5vw 10px;
+}
+
+.columns {
+    margin: 0 2em 1em 2em;
+}
+
+.columns.selected {
+    margin: 1.5em 0 1.5em 0;
+}
+
+.pagination {
+    margin: 1em;
 }
 
 *:focus {
     outline: none !important;
     box-shadow: none !important;
 }
-

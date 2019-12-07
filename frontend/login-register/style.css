@@ -1,0 +1,19 @@
+.columns {
+    height: 100vh;
+}
+
+.card {
+    text-align: center;
+}
+
+.card-content img {
+    margin-bottom: 1em;
+}
+
+.card-content p {
+    margin-bottom: .5em;
+}
+
+.label {
+    text-align: left;
+}
