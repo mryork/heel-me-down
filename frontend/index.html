@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="99875682429-69chpnsjo1jnlb9o0iivqjv7ghjbirrp.apps.googleusercontent.com">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Heel-Me-Down</title>
 
@@ -19,7 +20,7 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <a href="login/index.html">
-                        <button class="button is-info">Log In</button>
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     </a>
                 </div>
             </div>
@@ -45,5 +46,9 @@
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/18fbdea687.js" crossorigin="anonymous"></script>
+
+    <!-- Google Platform API and Local Handler -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="login.js"></script>
 </body>
 </html>
