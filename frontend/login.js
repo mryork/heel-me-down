@@ -5,9 +5,14 @@ var user = {
 var id_token = ""
 
 function onSignIn(googleUser) {
+    alert(googleUser)
     var profile = googleUser.getBasicProfile();
     user.name = profile.getName();
     id_token = googleUser.getAuthResponse().id_token;
+}
+
+function onFailure() {
+    alert("ERROR")
 }
 
 function getAccessToken() {
