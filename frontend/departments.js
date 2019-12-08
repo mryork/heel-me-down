@@ -1,4 +1,5 @@
-var depts = [
+function getDepts() {
+    return [
     {
         code: "AAAD",
         name: "AFRI, AFRI-AMER, DIASPORA STDS"
@@ -1148,4 +1149,4 @@ var depts = [
         name: "ZOOLOGY"
     }
 ];
- 
+}

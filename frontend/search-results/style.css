@@ -1,5 +1,5 @@
 body {
-    background-color: whitesmoke;
+    height: 100vh;
 }
 
 .navbar-brand img {
@@ -10,52 +10,141 @@ body {
     border: transparent;
 }
 
-.navbar-link {
-    display: block;
+.navbar-start .autocomp {
+    position: fixed;
+    background-color: white;
+    color: black;
+    font-size: 10pt;
+    /* border: 1px solid red; */
+    cursor: pointer;
 }
 
-.navbar-link h2 {
-    font-size: 9pt;
+.navbar-start .autocomp.selected {
+    background-color: aqua;
+}
+
+.navbar-item h2 {
+    /* font-size: 9pt; */
+    font-size: 12pt;
     line-height: 90%;
     color: whitesmoke;
+    margin: 1em;
 }
 
 .navbar-link h3 {
-    font-size: 12pt;
+    /* font-size: 13pt; */
     line-height: 90%;
     text-align: right;
     color: white;
 }
 
-h1 {
-    font-size: 5vw;
-    color: #FFFFFF;
+.navbar-item.has-dropdown {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.listView {
+    background-color: whitesmoke;
+    padding-bottom: 1em;
 }
 
 #itemCount {
-    margin-top: .25em;
+    margin: 0;
+    padding-bottom: 1em;
+}
+
+#itemCount .column {
+    padding: 0 1.5em;
+}
+
+.listView > .columns {
+    padding: .5em 2em;
+    margin: 0;
+}
+
+.listView > .columns.selected {
+    padding: 0;
+    margin: 0;
 }
 
 .listing {
     border: thin solid gray;
     border-radius: 5px;
-    width: 75vw;
-    height: 180px;
+    cursor: pointer;
+    height: 8em;
 }
 
-.columns {
-    margin: 0 2em 1em 2em;
+.listing .columns {
+    margin: 0;
+    height: 6.5em;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.columns.selected {
-    margin: 1.5em 0 1.5em 0;
+.listView .columns.selected .listing {
+    height: fit-content;
+    padding: .75em 2em;
+}
+
+.listView .columns.selected .listing .columns {
+    height: fit-content;
+}
+
+.listing .column.itemImg {
+    padding: 0;
+    text-align: center;
+    align-self: center;
+}
+
+.listing .column.itemInfo {
+    padding: 0 1em;
+}
+
+.listing .column.itemInfo h1 {
+    font-size: 24pt;
+    line-height: 90%;
+    color: red;
+    margin-bottom: .25em;
+}
+
+.listing .column.itemInfo h2 {
+    display: inline;
 }
 
 .pagination {
-    margin: 1em;
+    padding: 1em;
+    margin: 0;
+    /* position: fixed;
+    bottom: 0; */
+    width: 100%;
+    background-color: whitesmoke;
 }
 
 *:focus {
     outline: none !important;
     box-shadow: none !important;
+}
+
+@media only screen and (max-width: 1023px){
+    .navbar-item.has-dropdown a.navbar-item {
+        color: whitesmoke;
+    }
+
+    .navbar-item.has-dropdown a.navbar-item:hover {
+        color: dimgray;
+    }
+
+    .navbar-link, .navbar-dropdown {
+        text-align: right;
+    }
+
+    .listView .columns {
+        margin: 0 5em 1em 5em;
+    }
+
+    .listView .columns.selected {
+        margin: 0 3em 1em 3em;
+    }
 }
