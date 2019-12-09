@@ -1,5 +1,16 @@
 body {
     height: 100vh;
+    background-color: whitesmoke;
+}
+
+#root, #innerRoot {
+    height: 100%;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    padding: 0 .25em;
 }
 
 .navbar-brand img {
@@ -19,16 +30,25 @@ body {
     cursor: pointer;
 }
 
+.navbar-start .autocomp:hover {
+    background-color: aquamarine;
+}
+
 .navbar-start .autocomp.selected {
     background-color: aqua;
 }
 
-.navbar-item h2 {
+.navbar-item {
+    padding: 0 .75rem;
+}
+
+.navbar-item .greeting {
     /* font-size: 9pt; */
     font-size: 12pt;
     line-height: 90%;
     color: whitesmoke;
     margin: 1em;
+    cursor: default;
 }
 
 .navbar-link h3 {
@@ -47,16 +67,37 @@ body {
 
 .listView {
     background-color: whitesmoke;
-    padding-bottom: 1em;
+    padding: 3em 0 5em 0;
+    min-height: 100%;
 }
 
 #itemCount {
     margin: 0;
-    padding-bottom: 1em;
+    padding: 1em 2em .5em 2em;
+}
+
+#blankPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 60vh;
+    align-items: center;
+    justify-content: center;
+    /* margin: 2em; */
+}
+
+#blankPage img {
+    background-color: rgba(0, 0, 0, .1);
+    margin: 1em;
+}
+
+#blankPage .subtitle {
+    text-align: center;
+    max-width: 90vw;
 }
 
 #itemCount .column {
     padding: 0 1.5em;
+    cursor: default;
 }
 
 .listView > .columns {
@@ -85,39 +126,59 @@ body {
 
 .listView .columns.selected .listing {
     height: fit-content;
-    padding: .75em 2em;
+    padding: .75em 1em;
 }
 
 .listView .columns.selected .listing .columns {
     height: fit-content;
 }
 
-.listing .column.itemImg {
+.itemImg {
     padding: 0;
     text-align: center;
     align-self: center;
 }
 
-.listing .column.itemInfo {
+.itemInfo {
     padding: 0 1em;
 }
 
-.listing .column.itemInfo h1 {
-    font-size: 24pt;
-    line-height: 90%;
+.itemInfo h1.title {
+    /* line-height: 90%; */
     color: red;
     margin-bottom: .25em;
+    /* margin: 0; */
 }
 
-.listing .column.itemInfo h2 {
-    display: inline;
+.itemInfo .seller-date {
+    display: flex;
+    justify-content: space-between;
+    vertical-align: middle;
+}
+
+.listView .columns.selected .itemInfo .seller-date,
+.listView .columns.selected .itemInfo .desc {
+    cursor: text;
+}
+
+.itemInfo .seller-date .title {
+    margin-bottom: .5em;
+}
+
+.itemInfo .seller-date .subtitle {
+    margin: 0;
+}
+
+.itemInfo .desc {
+    word-break: break-all;
+    white-space: normal;
 }
 
 .pagination {
     padding: 1em;
     margin: 0;
-    /* position: fixed;
-    bottom: 0; */
+    position: fixed;
+    bottom: 0;
     width: 100%;
     background-color: whitesmoke;
 }
@@ -128,6 +189,10 @@ body {
 }
 
 @media only screen and (max-width: 1023px){
+    .navbar {
+        width: 100vw;
+    }
+
     .navbar-item.has-dropdown a.navbar-item {
         color: whitesmoke;
     }
@@ -140,11 +205,21 @@ body {
         text-align: right;
     }
 
-    .listView .columns {
-        margin: 0 5em 1em 5em;
+    .listView > .columns {
+        margin: 0 2em 1em 2em;
+        justify-content: unset;
+        display: flex;
     }
 
-    .listView .columns.selected {
+    .listView > .columns.selected {
         margin: 0 3em 1em 3em;
+    }
+
+    .listing > .columns {
+        display: flex;
+    }
+
+    .buyItem .column.is-1 {
+        display: none;
     }
 }

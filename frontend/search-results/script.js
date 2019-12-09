@@ -8,219 +8,120 @@ class App extends React.Component {
             isLoaded: false,
             user: {},
             currPage: 1,
-            itemsPerPage: null,
-            maxPage: null,
+            itemsPerPage: 20,
             items: [],
             searchStr: "",
             searchSel: null,
             suggestions: [],
-            navInput: null,
+            inputActive: false,
             burgerActive: false,
             optionsActive: false,
             selectedItem: null,
             message: "",
+            months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
         };
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     };
 
     componentDidMount() {
         let newState = this.state;
-        newState.isLoaded = true;
-        newState.user = {
+        newState.user = this.getUser();
+        newState.items = []; // getItems(user.searchStr);
+        this.setState(newState);
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
+    }
+    
+    updateWindowDimensions() {
+        this.setState({ width: window.innerWidth, height: window.innerHeight });
+    }
+
+    deselectItems() {
+        console.log('aaa')
+        let { items } = this.state;
+        items.map(item => {
+            let newItem = item;
+            newItem.selected = false;
+            item = newItem;
+        });
+        this.setState({items: items, selectedItem: null});
+    }
+
+    getUser() {
+        return {
             isLoggedIn: true,
             id: 42069,
-            settings: {
-                itemsPerPage: 2,
-            },
             searchStr: "AMST 125",
-        }; // getUser();
-        newState.items = [
+        };
+    }
+
+    getItems(dept, num) {
+        this.setState({isLoaded: false});
+        console.log(dept, num)
+        this.setState({
+            isLoaded: true,
+            items: [
             {
                 id: 1,
                 department: "AMST",
                 number: "125",
                 name: "textbook1",
-                seller: "adam c.",
-                date: "nov 20",
-                materials: [
-                    "red",
-                    "green",
-                    "blue",
-                ],
+                seller: "Adam Cogdell",
+                date: Date.UTC(2018, 11, 9, 0, 0, 0),
+                description: "book with book features",
                 price: 10.99,
                 amazonPrice: 11.99,
                 sold: false,
             },
             {
                 id: 6,
+                department: "BIO",
+                number: "101",
                 name: "iclicker",
-                seller: "adam c.",
-                date: "nov 20",
-                materials: [
-                    "mean",
-                    "naughty",
-                    "wicked",
-                ],
+                seller: "Matthew Ardizzone",
+                date: Date.UTC(2019, 11, 9, 0, 0, 0),
+                description: "clikn.space",
+                price: 10000000.01,
+                amazonPrice: 0.92,
+                sold: true,
             },
             {
                 id: 5,
+                department: "COMP",
+                number: "999",
                 name: "boat",
-                seller: "adam c.",
-                date: "nov 20",
-                materials: [
-                    "mean",
-                    "naughty",
-                    "wicked",
-                ],
+                seller: "Joshua Cogdell",
+                date: Date.UTC(2019, 11, 8, 0, 0, 0),
+                description: "floats well",
+                price: 1.75,
+                amazonPrice: 2.25,
+                sold: false,
             },
             {
                 id: 10,
+                department: "PHIL",
+                number: "224H",
                 name: "air",
-                seller: "adam c.",
-                date: "nov 20",
-                materials: [
-                    "white",
-                    "green",
-                    "blue",
-                ],
+                seller: "Jesus Christ",
+                date: Date.UTC(2018, 11, 7, 0, 0, 0),
+                description: "this shits wet yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                price: 0,
+                amazonPrice: 1.11,
+                sold: true,
             },
             {
                 id: 65,
+                department: "ENGL",
+                number: "105i",
                 name: "laptop",
-                seller: "adam c.",
-                date: "nov 20",
-                materials: [
-                    "tech",
-                    "ML",
-                    "IT",
-                ],
+                seller: "Ann Bee",
+                date: Date.UTC(2019, 2, 10, 0, 0, 0),
+                description: "core i11 9999k, rtx 4090ti, 256gb ram, 32tb m.2 ssd, 8k 3000hz panel",
+                price: 120.2,
+                amazonPrice: 100000000000020.2,
+                sold: false,
             },
-        ]; // getItems(user.searchStr);
-        newState.itemsPerPage = newState.user.settings.itemsPerPage;
-        newState.maxPage = Math.ceil(newState.items.length/newState.itemsPerPage);
-        this.setState(newState);
-        this.updateWindowDimensions();
-        window.addEventListener('resize', this.updateWindowDimensions);
-    }
-
-    
-    updateWindowDimensions() {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
-    }
-
-    selectItem(itemId, e) {
-        e.stopPropagation();
-        let newState = this.state;
-        newState.items.map((item, i) => {
-            let newItem = item;
-            newItem.selected = (item.id==itemId);
-            newState.selectedItem = newItem.selected ? i : newState.selectedItem;
-            item = newItem;
-        });
-        this.setState(newState);
-    }
-
-    deselectItems() {
-        let newState = this.state;
-        newState.items.map(item => {
-            let newItem = item;
-            newItem.selected = false;
-            item = newItem;
-        });
-        newState.selectedItem = null;
-        this.setState(newState);
-    }
-
-    goToPage(page) {
-        let newState = this.state;
-        if (page > 0 && page <= newState.maxPage) {
-            newState.currPage = page;
-        }
-        this.setState(newState);
-        this.deselectItems();
-    }
-
-    searchChange(str) {
-        let newState = this.state;
-        let depts = getDepts().map(dept => {
-            return dept.code;
-        });
-        let inputStr = this.toBareBones(str);
-        newState.searchStr = str;
-        if (inputStr) {
-            newState.suggestions = [str];
-            if (inputStr.length < 5) {
-                newState.suggestions = newState.suggestions.concat(depts.filter(sug => {
-                    return this.toBareBones(sug).includes(inputStr);
-                }).slice(0, 10));
-            }
-        } else {
-            newState.suggestions = [];
-        }
-        newState.searchSel = null;
-        this.setState(newState);
-        this.state.navInput.focus();
-    }
-
-    searchSubmit() {
-        let newState = this.state;
-        if (newState.searchSel != null) {
-            this.searchChange(newState.suggestions[newState.searchSel]);
-            newState.searchSel = null;
-        } else if (newState.searchStr.length > 4) {
-            // newState.items = getItems(newState.searchStr);
-            $(newState.navInput).blur();
-        }
-        this.setState(newState);
-        console.log(newState.searchStr)
-    }
-
-    searchKeyDown(e) {
-        e.stopPropagation();
-        let newState = this.state;
-        switch (e.keyCode) {
-        case 38: // up
-            e.preventDefault();
-            if (newState.searchSel > 0) newState.searchSel--;
-            break;
-        case 40: // down
-            e.preventDefault();
-            if (newState.searchSel == null) newState.searchSel = 1;
-            else if (newState.searchSel != newState.suggestions.length-1) newState.searchSel++;
-            break;
-        case 27: // escape
-            $(newState.navInput).blur();
-            break;
-        }
-        if (newState.searchSel != null && newState.searchStr.length < 5) newState.searchStr = newState.suggestions[newState.searchSel];
-        this.setState(newState);
-    }
-
-    toBareBones(str) {
-        if (!str) return str;
-        return str.toLowerCase().replace(/ /g, '').replace(/-/g, '').replace(/_/g, '');
-    }
-
-    getItems(itemStr) {
-        // (itemStr.replace(/[0-9]/g, ''), itemStr.replace(/\D/g,''))
-    }
-
-    burgerClick() {
-        let newState = this.state;
-        newState.burgerActive = !newState.burgerActive;
-        this.setState(newState);
-    }
-
-    toggleOptions() {
-        let newState = this.state;
-        newState.optionsActive = !newState.optionsActive;
-        this.setState(newState);
-    }
-
-    messChange(str) {
-        let newState = this.state;
-        newState.message = str;
-        this.setState(newState);
+        ]});
     }
 
     messClick() {
@@ -228,40 +129,38 @@ class App extends React.Component {
     }
 
     render() {
-        const { isLoaded, user, items, currPage, maxPage } = this.state;
+        const { isLoaded, user, items, currPage, itemsPerPage } = this.state;
         return (
-        <div>
+        <div id="innerRoot">
         <Navbar
-            user={isLoaded ? user : "Loading..."}
-            settings={() => {}}
+            setState={(state) => this.setState(state)}
+            getItems={(dept, num) => this.getItems(dept, num)}
             inquiries={() => {}}
             toggleLog={() => {}}
-            toggleOptions={this.toggleOptions.bind(this)}
-            optionsActive={this.state.optionsActive}
-            searchChange={this.searchChange.bind(this)}
-            searchSubmit={this.searchSubmit.bind(this)}
-            searchKeyDown={this.searchKeyDown.bind(this)}
+            user={isLoaded ? user : "Loading..."}
             suggestions={this.state.suggestions}
             searchStr={this.state.searchStr}
             searchSel={this.state.searchSel}
-            initNavInput={inp => !this.state.navInput?this.setState({navInput: inp}):null}
             navInput={this.state.navInput}
-            burgerClick={this.burgerClick.bind(this)}
-            burgerActive={this.state.burgerActive}
             devWidth={this.state.width}
+            inputActive={this.state.inputActive}
+            optionsActive={this.state.optionsActive}
+            burgerActive={this.state.burgerActive}
         />
         <ListView
-            items={isLoaded ? items.slice((currPage-1)*user.settings.itemsPerPage, currPage*user.settings.itemsPerPage) : []}
-            totalItems={isLoaded ? items.length : -1}
-            selectItem={this.selectItem.bind(this)}
+            setState={(state) => this.setState(state)}
             deselectItems={this.deselectItems.bind(this)}
-            messChange={this.messChange.bind(this)}
             messClick={this.messClick.bind(this)}
+            items={isLoaded ? items : []}
+            currPage={currPage}
+            itemsPerPage={itemsPerPage}
+            totalItems={isLoaded ? items.length : 0}
         />
         <Pagination
+            setState={(state) => this.setState(state)}
+            deselectItems={this.deselectItems.bind(this)}
             currPage={currPage}
-            maxPage={isLoaded ? maxPage : currPage}
-            goToPage={this.goToPage.bind(this)}
+            maxPage={isLoaded ? Math.ceil(items.length/itemsPerPage) : currPage}
         />
         </div>
         );
@@ -273,15 +172,77 @@ class Navbar extends React.Component {
         super(props);
     }
 
+    searchChange(str) {
+        let { searchSel, suggestions, navInput, searchStr } = this.props;
+        let depts = getDepts().map(dept => {
+            return dept.code;
+        });
+        let inputStr = this.toBareBones(str);
+        searchStr = str;
+        if (inputStr) {
+            suggestions = [str].concat(depts.filter(sug => {
+                return this.toBareBones(sug).includes(inputStr) || inputStr.includes(this.toBareBones(sug));
+            }).slice(0, 10));
+        } else {
+            suggestions = [];
+        }
+        searchSel = null;
+        this.props.setState({ searchStr: searchStr, suggestions: suggestions, searchSel: searchSel });
+        navInput.focus();
+    }
+
+    searchSubmit() {
+        let { searchSel, suggestions, navInput, searchStr } = this.props;
+        if (searchSel != null) {
+            this.searchChange(suggestions[searchSel]);
+            searchSel = null;
+        } else if (this.toBareBones(searchStr).length > 4) {
+            // newState.items = getItems(newState.searchStr);
+            $(navInput).blur();
+            console.log("getItems", searchStr)
+            this.props.getItems(this.toBareBones(searchStr.replace(/[0-9]/g, '')), this.toBareBones(searchStr.replace(/\D/g,'')));
+            this.props.setState({
+                searchSel: searchSel,
+            });
+        }
+    }
+
+    searchKeyDown(e) {
+        e.stopPropagation();
+        let { searchSel, suggestions, navInput, searchStr } = this.props;
+        switch (e.keyCode) {
+        case 38: // up
+            e.preventDefault();
+            if (searchSel > 0) searchSel--;
+            break;
+        case 40: // down
+            e.preventDefault();
+            if (searchSel == null) searchSel = 1;
+            else if (searchSel != suggestions.length-1) searchSel++;
+            break;
+        case 27: // escape
+            $(navInput).blur();
+            break;
+        }
+        if (searchSel != null && searchStr.length < 5) searchStr = suggestions[searchSel];
+        this.props.setState({ searchSel: searchSel, searchStr: searchStr });
+    }
+
+    toBareBones(str) {
+        if (!str) return str;
+        return str.toLowerCase().replace(/ /g, '').replace(/-/g, '').replace(/_/g, '');
+    }
+
     renderSuggestions(inputWidth) {
-        if (!$(".navbar-start .input").is(":focus")) return '';
-        return this.props.suggestions.map((sug, key) => {
+        let { inputActive, suggestions, searchSel } = this.props;
+        if (!inputActive) return '';
+        return suggestions.map((sug, key) => {
             return (
             <div
                 key={key}
-                className={"autocomp".concat(this.props.searchSel==key?" selected":"")}
+                className={"autocomp".concat(searchSel==key?" selected":"")}
                 style={{marginTop: key*15+"pt", marginLeft: inputWidth*.17, width: inputWidth*.66}}
-                onClick={() => {this.props.searchChange(sug); this.props.searchSubmit();}}>
+                onClick={() => {this.searchChange(sug); this.searchSubmit();}}>
                     <p>{sug}</p>
             </div>
             );
@@ -294,14 +255,17 @@ class Navbar extends React.Component {
         return (
         <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
             <NavbarBrand
-                burgerClick={this.props.burgerClick}
+                burgerClick={() => this.props.setState({burgerActive: !this.props.burgerActive})}
                 burgerActive={this.props.burgerActive}
             />
             <NavbarMenu
-                handleChange={this.props.searchChange}
-                handleSubmit={this.props.searchSubmit}
-                handleKeyDown={this.props.searchKeyDown}
-                suggestions={(this.props.suggestions.length!=1 || !this.props.searchStr || !$(".navbar-start .input").is(":focus")) ? this.renderSuggestions(inputWidth) : (
+                setState={(state) => this.props.setState(state)}
+                handleChange={this.searchChange.bind(this)}
+                handleSubmit={this.searchSubmit.bind(this)}
+                handleKeyDown={this.searchKeyDown.bind(this)}
+                suggClick={() => this.searchChange()}
+                suggestions={(this.props.suggestions.length!=1 || !this.props.searchStr || !this.props.inputActive) ?
+                this.renderSuggestions(inputWidth) : (
                     <div>
                     {this.renderSuggestions(inputWidth)}
                     <div className="autocomp" style={{marginTop: "15pt", marginLeft: inputWidth*.17, width: inputWidth*.66}}>
@@ -310,17 +274,17 @@ class Navbar extends React.Component {
                     </div>
                 )}
                 searchStr={this.props.searchStr}
-                nameInput={this.props.initNavInput}
+                nameInput={(inp) => !this.props.navInput?this.props.setState({navInput: inp}):null}
                 burgerActive={this.props.burgerActive}
                 devWidth={this.props.devWidth}
+                handleFocusChange={() => this.props.setState({inputActive: !this.props.inputActive})}
             />
             {this.props.burgerActive || this.props.devWidth >= 1024 ?
             <NavbarEnd
                 user={this.props.user}
                 inquiries={this.props.inquiries}
-                settings={this.props.settings}
                 toggleLog={this.props.toggleLog}
-                toggleOptions={this.props.toggleOptions}
+                toggleOptions={() => this.props.setState({optionsActive: !this.props.optionsActive})}
                 optionsActive={this.props.optionsActive}
                 devWidth={this.props.devWidth}
             />
@@ -365,12 +329,16 @@ function NavbarMenu(props) {
                         onKeyPress={(e) => e.key=="Enter"?props.handleSubmit():null}
                         onKeyDown={(e) => props.handleKeyDown(e)}
                         onClick={(e) => props.handleChange($(e.target).val())}
+                        onBlur={() => setTimeout(props.handleFocusChange, 100)}
+                        onFocus={() => props.handleFocusChange()}
                         ref={(inp) => props.nameInput(inp)}
                     />
                     <span className="icon is-left">
                         <i className="fas fa-search"></i>
                     </span>
+                    <div className="suggestions">
                     {props.suggestions}
+                    </div>
                 </div>
             </div>
         </div>
@@ -383,7 +351,7 @@ function NavbarEnd(props) {
     <div className="navbar-end">
         <div className="navbar-item">
             <div className="navbar-item">
-                <h2>Hello, {props.user.id}</h2>
+                <h2 className="greeting">Hello, {props.user.id}</h2>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link" onClick={() => props.toggleOptions()}>
@@ -398,13 +366,6 @@ function NavbarEnd(props) {
                         href="../inquiries/index.html"
                         onClick={() => props.inquiries()}>
                             Inquiries
-                    </a>
-                    <hr className="navbar-divider" />
-                    <a
-                        className="navbar-item"
-                        href="../settings/index.html"
-                        onClick={() => props.settings()}>
-                            Settings
                     </a>
                     <hr className="navbar-divider" />
                     <a
@@ -427,6 +388,18 @@ class ListView extends React.Component {
         super(props);
     }
 
+    selectItem(itemId, e) {
+        e.stopPropagation();
+        let { items, selectedItem } = this.props;
+        items.map((item, i) => {
+            let newItem = item;
+            newItem.selected = (item.id==itemId);
+            selectedItem = newItem.selected ? i : selectedItem;
+            item = newItem;
+        });
+        this.props.setState({items: items, selectedItem: selectedItem});
+    }
+
     renderItem(item, key) {
         return (
             <ListItem
@@ -434,45 +407,64 @@ class ListView extends React.Component {
                 itemName={item.name}
                 sellerName={item.seller}
                 postDate={item.date}
-                materials={item.materials}
-                selectItem={this.props.selectItem}
+                description={item.description}
+                selectItem={this.selectItem.bind(this)}
                 isSelected={item.selected}
-                messChange={this.props.messChange}
+                messChange={(str) => this.props.setState({message: str})}
                 messClick={this.props.messClick}
+                months={this.props.months}
                 key={key}
             />
         );
     }
 
     render() {
-        const { items, totalItems } = this.props;
+        let { items, totalItems, currPage, itemsPerPage } = this.props;
+        items = items.slice((currPage-1)*itemsPerPage, currPage*itemsPerPage);
         return (
         <div className="listView" onClick={() => this.props.deselectItems()}>
             <div id="itemCount" className="columns is-centered">
                 <div className="column is-two-thirds">
-                    {totalItems ? <p>Your search yielded {totalItems} results.</p> : <p>Loading...</p>}
+                    {totalItems!=-1 ? <p>Your search yielded {totalItems} results.</p> : <p>Loading...</p>}
                 </div>
             </div>
             {items.map((item, key) => this.renderItem(item, key))}
+            {totalItems==0 ?
+            <div id="blankPage">
+            <div className="columns is-centered is-vcentered">
+                <img src="../imgs/logo-large.png" />
+            </div>
+            <div className="columns is-centered is-vcentered">
+                <h2 className="subtitle is-4">Sorry about that. Try searching for a different course.</h2>
+            </div>
+            </div>
+            :null}
         </div>
         );
     }
 }
 
 function ListItem(props) {
+    let timePassed = Date.now()-props.postDate;
+    timePassed = { years: Math.floor(timePassed/(1000*60*60*24*365)), days: Math.floor(timePassed/(1000*60*60*24)) }
+    let postDate = "";
+    postDate = postDate.concat((timePassed.years > 0) ? `${timePassed.years} year${timePassed.years==1?'':'s'} ` : '');
+    postDate = postDate.concat((timePassed.days > 0 && timePassed.days%365!=0) ? `${timePassed.days-timePassed.years*365} day${timePassed.days==1?'':'s'}` : '');
+    if (postDate.length == 0) postDate = postDate.concat("today")
+    else postDate = postDate.concat(" ago")
+    postDate = "Posted ".concat(postDate);
+
     return (
     <div className={"columns is-centered ".concat(props.isSelected?"selected":"")}>
-        <div className="column listing is-two-thirds" onClick={(e) => props.selectItem(props.id, e)}>
+        <div className={"column listing is-".concat(props.isSelected?"8":"8")} onClick={(e) => props.selectItem(props.id, e)}>
             <div className="columns is-centered">
                 <div className="column is-2 itemImg">
                     <img src="../imgs/logo-gray.png" />
                 </div>
                 <div className="column is-8 itemInfo">
-                    <h1>{props.itemName}</h1>
-                    <h2>{props.sellerName}</h2><h2>{props.postDate}</h2>
-                    {props.materials.map((mat, key) => {
-                        return <p key={key}>{mat}</p>
-                    })}
+                    <h1 className="title is-3">{props.itemName}</h1>
+                    <div className="seller-date"><p className="title is-5">{props.sellerName}</p><p className="subtitle is-6">{postDate}</p></div>
+                    <div className="desc">{props.description}</div>
                 </div>
                 <div className="column is-2 itemImg">
                     <img src="../imgs/logo-gray.png" />
@@ -509,48 +501,64 @@ function ListItem(props) {
     );
 }
 
-function Pagination(props) {
-    return (
-    <nav className="pagination" role="navigation" aria-label="pagination">
-        <a className="pagination-previous" disabled={props.currPage == 1} onClick={() => props.goToPage(props.currPage-1)}>Previous</a>
-        <a className="pagination-next" disabled={props.currPage == props.maxPage} onClick={() => props.goToPage(props.currPage+1)}>Next page</a>
-        <ul className="pagination-list">
-            {props.currPage > 2 ?
-                <li onClick={() => props.goToPage(1)}>
-                    <a className="pagination-link" aria-label="Goto page 1">1</a>
-                </li>
-            : ""}
-            {props.currPage > 3 ?
+class Pagination extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    goToPage(page) {
+        let { currPage, maxPage } = this.props;
+        if (page > 0 && page <= maxPage) {
+            currPage = page;
+        }
+        this.props.setState({currPage: currPage});
+    }
+
+    render() {
+        const { currPage, maxPage } = this.props;
+
+        return (
+        <nav className="pagination" role="navigation" aria-label="pagination" onClick={() => this.props.deselectItems()}>
+            <a className="pagination-previous" disabled={currPage == 1} onClick={() => this.goToPage(currPage-1)}>Previous</a>
+            <a className="pagination-next" disabled={currPage == maxPage} onClick={() => this.goToPage(currPage+1)}>Next page</a>
+            <ul className="pagination-list">
+                {currPage > 2 ?
+                    <li onClick={() => this.goToPage(1)}>
+                        <a className="pagination-link" aria-label="Goto page 1">1</a>
+                    </li>
+                : ""}
+                {currPage > 3 ?
+                    <li>
+                        <span className="pagination-ellipsis">&hellip;</span>
+                    </li>
+                : ""}
+                {currPage > 1 ?
+                    <li onClick={() => this.goToPage(currPage-1)}>
+                        <a className="pagination-link" aria-label={"Goto page "+(currPage-1)}>{currPage-1}</a>
+                    </li>
+                : ""}
                 <li>
-                    <span className="pagination-ellipsis">&hellip;</span>
+                    <a className="pagination-link is-current" aria-label={"Page "+currPage} aria-current="page">{currPage}</a>
                 </li>
-            : ""}
-            {props.currPage > 1 ?
-                <li onClick={() => props.goToPage(props.currPage-1)}>
-                    <a className="pagination-link" aria-label={"Goto page "+(props.currPage-1)}>{props.currPage-1}</a>
-                </li>
-            : ""}
-            <li>
-                <a className="pagination-link is-current" aria-label={"Page "+props.currPage} aria-current="page">{props.currPage}</a>
-            </li>
-            {props.currPage < props.maxPage ?
-                <li onClick={() => props.goToPage(props.currPage+1)}>
-                    <a className="pagination-link" aria-label={"Goto page "+(props.currPage+1)}>{props.currPage+1}</a>
-                </li>
-            : ""}
-            {props.currPage < props.maxPage-2 ?
-                <li>
-                    <span className="pagination-ellipsis">&hellip;</span>
-                </li>
-            : ""}
-            {props.currPage+1 < props.maxPage ?
-                <li onClick={() => props.goToPage(props.maxPage)}>
-                    <a className="pagination-link" aria-label={"Goto page "+props.maxPage}>{props.maxPage}</a>
-                </li>
-            : ""}
-        </ul>
-    </nav>
-    );
+                {currPage < maxPage ?
+                    <li onClick={() => this.goToPage(currPage+1)}>
+                        <a className="pagination-link" aria-label={"Goto page "+(currPage+1)}>{currPage+1}</a>
+                    </li>
+                : ""}
+                {currPage < maxPage-2 ?
+                    <li>
+                        <span className="pagination-ellipsis">&hellip;</span>
+                    </li>
+                : ""}
+                {currPage+1 < maxPage ?
+                    <li onClick={() => this.goToPage(maxPage)}>
+                        <a className="pagination-link" aria-label={"Goto page "+maxPage}>{maxPage}</a>
+                    </li>
+                : ""}
+            </ul>
+        </nav>
+        );
+    }
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
