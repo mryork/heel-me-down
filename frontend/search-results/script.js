@@ -253,7 +253,7 @@ class Navbar extends React.Component {
         const inputWidth = parseInt($(".navbar-start .input").css("width"));
 
         return (
-        <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
+        <nav className="navbar" role="navigation" aria-label="main navigation">
             <NavbarBrand
                 burgerClick={() => this.props.setState({burgerActive: !this.props.burgerActive})}
                 burgerActive={this.props.burgerActive}
@@ -403,15 +403,16 @@ class ListView extends React.Component {
     renderItem(item, key) {
         return (
             <ListItem
+                selectItem={this.selectItem.bind(this)}
+                messChange={(str) => this.props.setState({message: str})}
+                messClick={this.props.messClick}
                 id={item.id}
                 itemName={item.name}
                 sellerName={item.seller}
                 postDate={item.date}
                 description={item.description}
-                selectItem={this.selectItem.bind(this)}
                 isSelected={item.selected}
-                messChange={(str) => this.props.setState({message: str})}
-                messClick={this.props.messClick}
+                price={item.price}
                 months={this.props.months}
                 key={key}
             />
@@ -449,7 +450,7 @@ function ListItem(props) {
     timePassed = { years: Math.floor(timePassed/(1000*60*60*24*365)), days: Math.floor(timePassed/(1000*60*60*24)) }
     let postDate = "";
     postDate = postDate.concat((timePassed.years > 0) ? `${timePassed.years} year${timePassed.years==1?'':'s'} ` : '');
-    postDate = postDate.concat((timePassed.days > 0 && timePassed.days%365!=0) ? `${timePassed.days-timePassed.years*365} day${timePassed.days==1?'':'s'}` : '');
+    postDate = postDate.concat((timePassed.days > 0 && timePassed.days%365!=0) ? `${timePassed.days-timePassed.years*365} day${timePassed.days%365==1?'':'s'}` : '');
     if (postDate.length == 0) postDate = postDate.concat("today")
     else postDate = postDate.concat(" ago")
     postDate = "Posted ".concat(postDate);
@@ -459,21 +460,23 @@ function ListItem(props) {
         <div className={"column listing is-".concat(props.isSelected?"8":"8")} onClick={(e) => props.selectItem(props.id, e)}>
             <div className="columns is-centered">
                 <div className="column is-2 itemImg">
-                    <img src="../imgs/logo-gray.png" />
+                    <img src="../imgs/ex_user_icon.png" />
                 </div>
-                <div className="column is-8 itemInfo">
-                    <h1 className="title is-3">{props.itemName}</h1>
-                    <div className="seller-date"><p className="title is-5">{props.sellerName}</p><p className="subtitle is-6">{postDate}</p></div>
+                <div className={"column itemInfo is-".concat(props.isSelected?"10":"10")}>
+                    <div className="name-date">
+                        <h1 className="title is-3">{props.itemName}</h1>
+                        <p className="subtitle is-6">{postDate}</p>
+                    </div>
+                    <div className="seller-price">
+                        <p className="title is-5">{props.sellerName}</p>
+                        <p className="title is-6">${props.price}</p>
+                    </div>
                     <div className="desc">{props.description}</div>
-                </div>
-                <div className="column is-2 itemImg">
-                    <img src="../imgs/logo-gray.png" />
                 </div>
             </div>
             {props.isSelected ? 
             <div className="columns is-centered buyItem">
-                <div className="column is-1"></div>
-                <div className="column is-10">
+                <div className="column is-12">
                     <div className="field">
                         <label className="label">Message</label>
                         <div className="control">
@@ -493,7 +496,6 @@ function ListItem(props) {
                         </button>
                     </div>
                 </div>
-                <div className="column is-1"></div>
             </div>
             :null}
         </div>
@@ -518,7 +520,7 @@ class Pagination extends React.Component {
         const { currPage, maxPage } = this.props;
 
         return (
-        <nav className="pagination" role="navigation" aria-label="pagination" onClick={() => this.props.deselectItems()}>
+        <nav className="pagination is-dark" role="navigation" aria-label="pagination" onClick={() => this.props.deselectItems()}>
             <a className="pagination-previous" disabled={currPage == 1} onClick={() => this.goToPage(currPage-1)}>Previous</a>
             <a className="pagination-next" disabled={currPage == maxPage} onClick={() => this.goToPage(currPage+1)}>Next page</a>
             <ul className="pagination-list">
