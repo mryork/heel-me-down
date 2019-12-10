@@ -5,12 +5,14 @@ body {
 
 #root, #innerRoot {
     height: 100%;
+    background-color: white;
 }
 
 .navbar {
     position: fixed;
     width: 100%;
     padding: 0 .25em;
+    background-color: rgb(59, 63, 66, .95);
 }
 
 .navbar-brand img {
@@ -31,11 +33,11 @@ body {
 }
 
 .navbar-start .autocomp:hover {
-    background-color: aquamarine;
+    background-color: rgb(232, 238, 241);
 }
 
 .navbar-start .autocomp.selected {
-    background-color: aqua;
+    background-color: rgb(169, 222, 243);
 }
 
 .navbar-item {
@@ -58,7 +60,8 @@ body {
     color: white;
 }
 
-.navbar-item.has-dropdown {
+.navbar-item.has-dropdown,
+.itemImg {
     -webkit-user-select: none; /* Safari */        
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
@@ -66,7 +69,7 @@ body {
 }
 
 .listView {
-    background-color: whitesmoke;
+    background-color: white;
     padding: 3em 0 5em 0;
     min-height: 100%;
 }
@@ -88,6 +91,7 @@ body {
 #blankPage img {
     background-color: rgba(0, 0, 0, .1);
     margin: 1em;
+    vertical-align: middle;
 }
 
 #blankPage .subtitle {
@@ -105,16 +109,12 @@ body {
     margin: 0;
 }
 
-.listView > .columns.selected {
-    padding: 0;
-    margin: 0;
-}
-
 .listing {
-    border: thin solid gray;
+    /* border: thin solid gray; */
     border-radius: 5px;
     cursor: pointer;
     height: 8em;
+    background-color: rgb(203, 237, 250);
 }
 
 .listing .columns {
@@ -126,7 +126,6 @@ body {
 
 .listView .columns.selected .listing {
     height: fit-content;
-    padding: .75em 1em;
 }
 
 .listView .columns.selected .listing .columns {
@@ -136,36 +135,54 @@ body {
 .itemImg {
     padding: 0;
     text-align: center;
-    align-self: center;
+}
+
+.itemImg img {
+    border-radius: 10%;
 }
 
 .itemInfo {
     padding: 0 1em;
 }
 
-.itemInfo h1.title {
-    /* line-height: 90%; */
-    color: red;
-    margin-bottom: .25em;
-    /* margin: 0; */
+.itemInfo .name-date .title {
+    color:  #4B9CD3;
+    margin: 0;
 }
 
-.itemInfo .seller-date {
+.itemInfo .name-date .subtitle {
+    margin: 0;
+    vertical-align: middle;
+    align-self: center;
+}
+
+.itemInfo .name-date {
+    margin-bottom: .5em;
+}
+
+.itemInfo .name-date,
+.itemInfo .seller-price {
     display: flex;
     justify-content: space-between;
     vertical-align: middle;
 }
 
-.listView .columns.selected .itemInfo .seller-date,
+.listView .columns.selected .itemInfo .seller-price,
 .listView .columns.selected .itemInfo .desc {
     cursor: text;
 }
 
-.itemInfo .seller-date .title {
+.itemInfo .seller-price .title,
+.itemInfo .seller-price .subtitle,
+.itemInfo .desc {
+    color: rgb(97, 108, 119);
+}
+
+.itemInfo .seller-price .title {
     margin-bottom: .5em;
 }
 
-.itemInfo .seller-date .subtitle {
+.itemInfo .seller-price .subtitle {
     margin: 0;
 }
 
@@ -174,13 +191,52 @@ body {
     white-space: normal;
 }
 
-.pagination {
+.itemPrice {
+    text-align: right;
     padding: 1em;
+}
+
+.pagination {
+    padding: .35em .75em;
     margin: 0;
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: whitesmoke;
+    background-color: rgb(59, 63, 66, .92);
+}
+
+.pagination-link {
+    background-color: rgb(161, 210, 243);
+    border: none;
+    color: whitesmoke;
+}
+
+.pagination-link.is-current {
+    background-color: #4B9CD3;
+    border: none;
+}
+
+.pagination-link:not(.is-current):hover {
+    background-color: rgb(245, 245, 245);
+    color: #4B9CD3;
+}
+
+.pagination-previous,
+.pagination-next {
+    background-color: rgb(161, 210, 243);
+    color: rgb(245, 245, 245);
+    border: none;
+}
+
+.pagination-previous:hover,
+.pagination-next:hover {
+    background-color: rgb(245, 245, 245);
+    color: #4B9CD3;
+}
+
+.pagination-previous:disabled,
+.pagination-next:disabled {
+    color: rgba(54,54,54);
 }
 
 *:focus {
