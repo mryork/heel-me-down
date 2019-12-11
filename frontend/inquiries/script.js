@@ -13,7 +13,10 @@ class App extends React.Component {
             inputActive: false,
             burgerActive: false,
             optionsActive: false,
+            items: [],
             selectedItem: null,
+            inquiries: [],
+            selectedInquiry: null,
         };
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
@@ -21,12 +24,14 @@ class App extends React.Component {
     componentDidMount() {
         let newState = this.state;
         newState.user = this.getUser();
-        newState.items = []; // getItems(user.searchStr);
+        newState.items = this.getItems();
+        newState.inquiries = this.getInquiries();
+        newState.isLoaded = true;
         this.setState(newState);
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
     }
-    
+
     updateWindowDimensions() {
         this.setState({ width: window.innerWidth, height: window.innerHeight });
     }
@@ -39,15 +44,139 @@ class App extends React.Component {
         };
     }
 
+    getItems() {
+        return [
+            {
+                id: 1,
+                department: "AMST",
+                number: "125",
+                name: "textbook1",
+                seller: "Adam Cogdell",
+                date: Date.UTC(2018, 11, 9, 0, 0, 0),
+                description: "book with book features",
+                price: 10.99,
+                amazonPrice: 11.99,
+                sold: false,
+            },
+            {
+                id: 6,
+                department: "BIO",
+                number: "101",
+                name: "iclicker",
+                seller: "Matthew Ardizzone",
+                date: Date.UTC(2019, 11, 9, 0, 0, 0),
+                description: "clikn.space",
+                price: 10000000.01,
+                amazonPrice: 0.92,
+                sold: true,
+            },
+            {
+                id: 5,
+                department: "COMP",
+                number: "999",
+                name: "boat",
+                seller: "Joshua Cogdell",
+                date: Date.UTC(2019, 11, 8, 0, 0, 0),
+                description: "floats well",
+                price: 1.75,
+                amazonPrice: 2.25,
+                sold: false,
+            },
+            {
+                id: 10,
+                department: "PHIL",
+                number: "224H",
+                name: "air",
+                seller: "Jesus Christ",
+                date: Date.UTC(2018, 11, 7, 0, 0, 0),
+                description: "this shits wet yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                price: 0,
+                amazonPrice: 1.11,
+                sold: true,
+            },
+            {
+                id: 65,
+                department: "ENGL",
+                number: "105i",
+                name: "laptop",
+                seller: "Ann Bee",
+                date: Date.UTC(2019, 2, 10, 0, 0, 0),
+                description: "core i11 9999k, rtx 4090ti, 256gb ram, 32tb m.2 ssd, 8k 3000hz panel",
+                price: 120.2,
+                amazonPrice: 100000000000020.2,
+                sold: false,
+            },
+        ];
+    }
+
+    getInquiries() {
+        return [
+            {
+                id: 1,
+                postName: "textbook1",
+                fromUser: "Bob",
+                phoneNumber: null,
+                email: null,
+                message: "gimme tit",
+                date: Date.UTC(2011, 6, 9, 0, 0, 0),
+            },
+            {
+                id: 4,
+                postName: "textbook1",
+                fromUser: "Bobby",
+                phoneNumber: "828-828-8288",
+                email: "null@null.com",
+                message: "give ya a nickel for it",
+                date: Date.UTC(2019, 6, 9, 0, 0, 0),
+            },
+            {
+                id: 16,
+                postName: "textbook1",
+                fromUser: "Barbara",
+                phoneNumber: "999-690-4200",
+                email: null,
+                message: "I would like to purchase this item.",
+                date: Date.UTC(2019, 11, 10, 0, 0, 0),
+            },
+            {
+                id: 64,
+                postName: "textbook1",
+                fromUser: "Billiam",
+                phoneNumber: null,
+                email: "dicklover69@bellsouth.net",
+                message: "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+                date: Date.UTC(2019, 10, 29, 0, 0, 0),
+            },
+        ]
+    }
+
+    loadSearchResults(str) {
+        window.location.href = "../search-results?s=".concat(str);
+    }
+
+    selectItem(item) {
+        let newState = this.state;
+        newState.selectedItem = item;
+        this.setState(newState);
+    }
+
+    selectInquiry(inq) {
+        let newState = this.state;
+        newState.selectedInquiry = inq;
+        this.setState(newState);
+    }
+
     render() {
-        const { isLoaded } = this.state;
+        const { isLoaded, user } = this.state;
 
         return (
+        <div id="innerRoot">
         <Navbar
             setState={(state) => this.setState(state)}
             inquiries={() => {}}
             toggleLog={() => {}}
-            user={isLoaded ? user : "Loading..."}
+            loadSearchResults={this.loadSearchResults.bind(this)}
+            user={isLoaded ? user : {id: "Loading..."}}
             suggestions={this.state.suggestions}
             searchStr={this.state.searchStr}
             searchSel={this.state.searchSel}
@@ -57,6 +186,15 @@ class App extends React.Component {
             optionsActive={this.state.optionsActive}
             burgerActive={this.state.burgerActive}
         />
+        <ViewPort
+            items={this.state.items}
+            selectedItem={this.state.selectedItem}
+            selectItem={this.selectItem.bind(this)}
+            inquiries={this.state.inquiries}
+            selectedInquiry={this.state.selectedInquiry}
+            selectInquiry={this.selectInquiry.bind(this)}
+        />
+        </div>
         );
     }
 }
@@ -87,17 +225,17 @@ class Navbar extends React.Component {
 
     searchSubmit() {
         let { searchSel, suggestions, navInput, searchStr } = this.props;
+        let bareSearchStr = this.toBareBones(searchStr);
         if (searchSel != null) {
             this.searchChange(suggestions[searchSel]);
             searchSel = null;
-        } else if (this.toBareBones(searchStr).length > 4) {
-            // newState.items = getItems(newState.searchStr);
+        } else if (bareSearchStr.length > 4 && suggestions.length > 1) {
             $(navInput).blur();
-            console.log("getItems", searchStr)
-            this.props.getItems(this.toBareBones(searchStr.replace(/[0-9]/g, '')), this.toBareBones(searchStr.replace(/\D/g,'')));
+            console.log("getItems", searchStr, suggestions.length)
             this.props.setState({
                 searchSel: searchSel,
             });
+            this.props.loadSearchResults(bareSearchStr);
         }
     }
 
@@ -111,7 +249,8 @@ class Navbar extends React.Component {
             break;
         case 40: // down
             e.preventDefault();
-            if (searchSel == null) searchSel = 1;
+            if (searchSel == null && suggestions.length > 1) searchSel = 1;
+            else if (searchSel == null) searchSel = 0;
             else if (searchSel != suggestions.length-1) searchSel++;
             break;
         case 27: // escape
@@ -259,7 +398,7 @@ function NavbarEnd(props) {
                         className="navbar-item"
                         href="../inquiries/index.html"
                         onClick={() => props.inquiries()}>
-                            Inquiries
+                            Posts/Inquiries
                     </a>
                     <hr className="navbar-divider" />
                     <a
@@ -274,6 +413,160 @@ function NavbarEnd(props) {
             </div>
         </div>
     </div>
+    );
+}
+
+class ViewPort extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="viewport columns" style={{paddingTop: $(".navbar").css("height")}}>
+                <div className="column is-2">
+                <ItemsView
+                    items={this.props.items}
+                    selectItem={this.props.selectItem}
+                />
+                </div>
+                <div className="column is-2">
+                <InquiriesView
+                    inquiries={this.props.inquiries}
+                    selectInquiry={this.props.selectInquiry}
+                />
+                </div>
+                <div className="column is-8 msgCol">
+                <MessageView
+                    inquiry={this.props.selectedInquiry!=null ? this.props.inquiries[this.props.selectedInquiry] : null}
+                />
+                </div>
+            </div>
+        );
+    }
+}
+
+class ItemsView extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    renderNewItemBlock() {
+        return (
+            <div className="itemBlock is-new" onClick={() => this.props.addItem()}>
+                <p className="subtitle is-4">New Post</p>
+            </div>
+        );
+    }
+
+    renderItemBlock(item, key) {
+        return (
+        <ItemBlock
+            id={item.id}
+            name={item.name}
+            keyprop={key}
+            handleClick={this.props.selectItem}
+            key={key}
+        />
+        );
+    }
+
+    render() {
+        return (
+        <div className="itemsView">
+            {this.renderNewItemBlock()}
+            {this.props.items.map((item, key) =>
+                this.renderItemBlock(item, key)
+            )}
+        </div>
+        );
+    }
+}
+
+function ItemBlock(props) {
+    return (
+    <div className={"itemBlock is-".concat(props.keyprop%2==0?"even":"odd")} onClick={() => props.handleClick(props.keyprop)}>
+        <p className="subtitle is-4">{props.name}</p>
+    </div>
+    );
+}
+
+class InquiriesView extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
+    renderInquiryBlock(inq, key) {
+        return (
+            <InquiryBlock
+                id={inq.id}
+                fromUser={inq.fromUser}
+                keyprop={key}
+                handleClick={this.props.selectInquiry}
+                key={key}
+            />
+        )
+    }
+
+    render() {
+        return (
+            <div className="inquiriesView">
+                {this.props.inquiries.map((inq, key) =>
+                    this.renderInquiryBlock(inq, key)
+                )}
+            </div>
+        );
+    }
+}
+
+function InquiryBlock(props) {
+    return (
+        <div className={"inquiryBlock is-".concat(props.keyprop%2==0?"even":"odd")} onClick={() => props.handleClick(props.keyprop)}>
+            <p className="subtitle is-4">{props.fromUser}</p>
+        </div>
+    );
+}
+
+function MessageView(props) {
+    let { inquiry } = props;
+    let timePassed, postDate;
+
+    if (inquiry) {
+        timePassed = Date.now()-inquiry.date;
+        timePassed = { years: Math.floor(timePassed/(1000*60*60*24*365)), days: Math.floor(timePassed/(1000*60*60*24)) }
+        postDate = "";
+        postDate = postDate.concat((timePassed.years > 0) ? `${timePassed.years} year${timePassed.years==1?'':'s'} ` : '');
+        postDate = postDate.concat((timePassed.days > 0 && timePassed.days%365!=0) ? `${timePassed.days-timePassed.years*365} day${timePassed.days%365==1?'':'s'}` : '');
+        if (postDate.length == 0) postDate = postDate.concat("today")
+        else postDate = postDate.concat(" ago")
+        postDate = "Sent ".concat(postDate);
+    }
+
+    return (
+        <div className="messageView">
+            {inquiry ?
+            <div className="displayMsg">
+                <h1 className="title is-3">{inquiry.postName}</h1>
+                <div className="from-date">
+                    <h3 className="title is-4">From: {inquiry.fromUser}</h3>
+                    <h3 className="subtitle is-4">{postDate}</h3>
+                </div>
+                <h2 className="title is-5">Phone: {inquiry.phoneNumber ? inquiry.phoneNumber : "N/A"}</h2>
+                <h2 className="title is-5">Email: {inquiry.email ? inquiry.email : "N/A"}</h2>
+                <h4 className="subtitle is-5 msg">{inquiry.message}</h4>
+            </div>
+            :
+            <div className="blankMsg">
+                <div className="columns is-centered is-vcentered">
+                    <img src="../imgs/logo-large.png" />
+                </div>
+                <br />
+                <div className="columns is-centered is-vcentered">
+                    <h2 className="subtitle is-4">Try selecting an item and inquiry to see the message here.</h2>
+                </div>
+                <br /><br />
+            </div>}
+        </div>
     );
 }
 

@@ -26,8 +26,13 @@ class App extends React.Component {
     componentDidMount() {
         let newState = this.state;
         newState.user = this.getUser();
-        newState.items = []; // getItems(user.searchStr);
+        window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            newState.searchStr = value.slice(0, value.search(/\d/)).toUpperCase().concat(' '+value.slice(value.search(/\d/)));
+        });
+        console.log(newState.searchStr)
         this.setState(newState);
+        let [dept, num] = newState.searchStr.split(' ');
+        this.getItems(dept, num);
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
     }
@@ -37,7 +42,6 @@ class App extends React.Component {
     }
 
     deselectItems() {
-        console.log('aaa')
         let { items } = this.state;
         items.map(item => {
             let newItem = item;
@@ -57,6 +61,7 @@ class App extends React.Component {
 
     getItems(dept, num) {
         this.setState({isLoaded: false});
+        // ajax
         console.log(dept, num)
         this.setState({
             isLoaded: true,
@@ -125,7 +130,7 @@ class App extends React.Component {
     }
 
     messClick() {
-        // sendMessage()
+        // sendMessage() ajax
     }
 
     render() {
@@ -197,7 +202,6 @@ class Navbar extends React.Component {
             this.searchChange(suggestions[searchSel]);
             searchSel = null;
         } else if (this.toBareBones(searchStr).length > 4) {
-            // newState.items = getItems(newState.searchStr);
             $(navInput).blur();
             console.log("getItems", searchStr)
             this.props.getItems(this.toBareBones(searchStr.replace(/[0-9]/g, '')), this.toBareBones(searchStr.replace(/\D/g,'')));
@@ -365,7 +369,7 @@ function NavbarEnd(props) {
                         className="navbar-item"
                         href="../inquiries/index.html"
                         onClick={() => props.inquiries()}>
-                            Inquiries
+                            Posts/Inquiries
                     </a>
                     <hr className="navbar-divider" />
                     <a

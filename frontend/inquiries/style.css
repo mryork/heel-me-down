@@ -68,21 +68,103 @@ body {
     user-select: none; /* Standard */
 }
 
-#howmany {
-    width: 75vw;
-    margin: 10px 12.5vw 10px;
+.viewport {
+    margin: 0;
+    height: 100%;
 }
 
-.listing {
-    border: thin solid gray;
-    border-radius: 5px;
-    width: 75vw;
-    height: 180px;
-    margin: 10px 12.5vw 10px;
+.viewport .column {
+    padding: 0;
 }
 
-#inboxes {
-    height: 100vh;
+.itemsView {
+    height: 100%;
+    background-color: aliceblue;
 }
 
+.itemBlock {
+    height: fit-content;
+    text-align: right;
+    cursor: pointer;
+    padding: .25em;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
 
+.itemBlock.is-new,
+.itemBlock.is-new .subtitle {
+    background-color: lightpink;
+}
+.itemBlock.is-even,
+.itemBlock.is-even .subtitle,
+.inquiryBlock.is-even,
+.inquiryBlock.is-even .subtitle {
+    background-color: lightseagreen;
+    color: aliceblue;
+}
+.itemBlock.is-odd,
+.itemBlock.is-odd .subtitle,
+.inquiryBlock.is-odd,
+.inquiryBlock.is-odd .subtitle {
+    background-color: lightcyan;
+}
+
+.inquiriesView {
+    height: 100%;
+    background-color: aliceblue;
+}
+
+.inquiryBlock {
+    height: fit-content;
+    text-align: right;
+    cursor: pointer;
+    padding: .25em;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.viewport .msgCol {
+    padding: .25em;
+}
+
+.messageView {
+    height: 100%;
+    padding: .25em;
+}
+
+.blankMsg {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.blankMsg,
+.blankMsg .columns {
+    padding: .25em;
+}
+
+.blankMsg img {
+    background-color: gray;
+}
+
+.displayMsg .from-date {
+    display: flex;
+    justify-content: space-between;
+    /* vertical-align: middle; */
+    align-items: baseline;
+}
+
+.displayMsg h2.title {
+    margin: 0;
+}
+
+.displayMsg .msg.subtitle {
+    padding-top: 1em;
+    margin: 0;
+}
