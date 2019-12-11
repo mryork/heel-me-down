@@ -43,10 +43,11 @@ var inquiry = mongoose.model('Inquiry', mongoose.Schema({
     message: String,        // Body of Inquiry
     phoneNumber: String,    // User's Provided Phone #
     email: String,          // User's Provided Email
-    postID: String,       // Name of Post Inquired
+    postID: String,         // Name of Post Inquired
     userFrom: String,       // From's Name
     userTo: String,         // To's ID
-    date: Number            // Date Sent
+    date: Number,           // Date Sent
+    fromUserImg: String     // User Image
 }))
 
 // Status Checker
@@ -212,6 +213,7 @@ app.post("/api/createInquiry", (req,res) => {
     const userTo = req.body.to;
     const postID = req.body.postID;
     const date = Date.now();
+    const fromUserImg = req.body.fromUserImg;
 
     verifyUser(token).then((obj) => {
         user.findOne({id: obj['sub']}).then((u) => {
@@ -224,6 +226,7 @@ app.post("/api/createInquiry", (req,res) => {
                         postID: postID,
                         userTo: userTo,
                         userFrom: u.id,
+                        fromUserImg: fromUserImg,
                         date: date
                     }).then((p) => {
                         res.sendStatus(200);
@@ -240,6 +243,7 @@ app.post("/api/createInquiry", (req,res) => {
                     postID: postID,
                     userTo: userTo,
                     userFrom: u.id,
+                    fromUserImg: fromUserImg,
                     date: date
                 }).then((p) => {
                     res.sendStatus(200);
