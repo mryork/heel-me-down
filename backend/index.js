@@ -43,7 +43,7 @@ var inquiry = mongoose.model('Inquiry', mongoose.Schema({
     message: String,        // Body of Inquiry
     phoneNumber: String,    // User's Provided Phone #
     email: String,          // User's Provided Email
-    postName: String,       // Name of Post Inquired
+    postID: String,       // Name of Post Inquired
     userFrom: String,       // From's Name
     userTo: String,         // To's ID
     date: Number            // Date Sent
@@ -199,6 +199,70 @@ app.post("/api/deletePost", (req,res) => {
     }).catch((e) => {
         console.log(e)
         res.sendStatus(400);
+    })
+})
+
+// Create an Inquiry
+app.post("/api/createInquiry", (req,res) => {
+    const token = req.body.token;
+    const name = req.body.userName;
+    const message = req.body.message;
+    const phone = req.body.phone;
+    const email = req.body.email;
+    const userTo = req.body.to;
+    const postID = req.body.postID;
+    const date = Date.now();
+
+    verifyUser(token).then((obj) => {
+        user.findOne({id: obj['sub']}).then((u) => {
+            if(!u) {
+                user.create({id: id, name: name}).then((u) => {
+                    inquiry.create({
+                        message: message,
+                        phoneNumber: phone,
+                        email: email,
+                        postID: postID,
+                        userTo: userTo,
+                        userFrom: u.id,
+                        date: date
+                    }).then((p) => {
+                        res.sendStatus(200);
+                    }).catch(() => {
+                        res.sendStatus(400);
+                    })
+                })
+            } else {
+                inquiry.create({
+                    name: name,
+                    message: message,
+                    phoneNumber: phone,
+                    email: email,
+                    postID: postID,
+                    userTo: userTo,
+                    userFrom: u.id,
+                    date: date
+                }).then((p) => {
+                    res.sendStatus(200);
+                }).catch(() => {
+                    res.sendStatus(400);
+                })
+            }
+        })
+    })
+})
+
+// Get Inquiries
+app.post("/api/getInquiries", (req,res) => {
+    const token = req.body.token;
+
+    verifyUser(token).then((obj) => {
+        user.findOne({id: obj['sub']}).then((u) => {
+            inquiry.find({ userTo: u.id }).then(results => {
+                res.json(results);
+                res.status(200);
+                res.send();
+            });
+        });
     })
 })
 

@@ -25,3 +25,7 @@ function signOut() {
         window.location.assign("http://heel-me-down-mryork.cloudapps.unc.edu/")
     })
 }
+
+function isSignedIn() {
+    return gapi.auth2.getAuthInstance().isSignedIn.get();
+}
