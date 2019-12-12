@@ -1,5 +1,4 @@
 var user = {
-    name: ""
 }
 
 var id_token = ""
@@ -8,6 +7,8 @@ function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     user.name = profile.getName();
     id_token = googleUser.getAuthResponse().id_token;
+
+    document.getElementById("signinarea").innerHTML = `<button class="button is-primary" onclick="signOut">Sign Out</button>`
 }
 
 function onFailure() {

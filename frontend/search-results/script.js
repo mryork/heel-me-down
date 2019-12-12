@@ -34,6 +34,7 @@ class App extends React.Component {
         let [dept, num] = newState.searchStr.split(' ');
         this.getItems(dept, num);
         this.updateWindowDimensions();
+        
         window.addEventListener('resize', this.updateWindowDimensions);
     }
     
@@ -353,6 +354,7 @@ function NavbarMenu(props) {
 function NavbarEnd(props) {
     return (
     <div className="navbar-end">
+        { props.user.isLoggedIn ?
         <div className="navbar-item">
             <div className="navbar-item">
                 <h2 className="greeting">Hello, {props.user.id}</h2>
@@ -375,15 +377,16 @@ function NavbarEnd(props) {
                     <a
                         className="navbar-item"
                         href="../index.html"
-                        onClick={() => props.toggleLog()}>
+                        onClick={signOut}>
                             {props.user ? "Log Out" : "Log In"}
                     </a>
                     </div>
                     :null}
                 </div>
             </div>
+            </div>
+            : <div className="navbar-item"><a className="button is-primary" href="/index.html">Sign-In on Homepage</a></div>}
         </div>
-    </div>
     );
 }
 
