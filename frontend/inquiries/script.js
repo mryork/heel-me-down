@@ -15,8 +15,24 @@ class App extends React.Component {
             optionsActive: false,
             items: [],
             selectedItem: null,
+            newItem: {
+                name: null,
+                description: null,
+                department: null,
+                number: null,
+                price: null,
+            },
+            addingItem: false,
+            validItem: {
+                name: true,
+                description: true,
+                department: true,
+                number: true,
+                price: true,
+            },
             inquiries: [],
             selectedInquiry: null,
+            message: null,
         };
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
@@ -25,7 +41,7 @@ class App extends React.Component {
         let newState = this.state;
         newState.user = this.getUser();
         newState.items = this.getItems();
-        newState.inquiries = this.getInquiries();
+        newState.allInquiries = this.getAllInquiries();
         newState.isLoaded = true;
         this.setState(newState);
         this.updateWindowDimensions();
@@ -55,7 +71,6 @@ class App extends React.Component {
                 date: Date.UTC(2018, 11, 9, 0, 0, 0),
                 description: "book with book features",
                 price: 10.99,
-                amazonPrice: 11.99,
                 sold: false,
             },
             {
@@ -67,7 +82,6 @@ class App extends React.Component {
                 date: Date.UTC(2019, 11, 9, 0, 0, 0),
                 description: "clikn.space",
                 price: 10000000.01,
-                amazonPrice: 0.92,
                 sold: true,
             },
             {
@@ -79,7 +93,6 @@ class App extends React.Component {
                 date: Date.UTC(2019, 11, 8, 0, 0, 0),
                 description: "floats well",
                 price: 1.75,
-                amazonPrice: 2.25,
                 sold: false,
             },
             {
@@ -91,7 +104,6 @@ class App extends React.Component {
                 date: Date.UTC(2018, 11, 7, 0, 0, 0),
                 description: "this shits wet yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
                 price: 0,
-                amazonPrice: 1.11,
                 sold: true,
             },
             {
@@ -103,13 +115,12 @@ class App extends React.Component {
                 date: Date.UTC(2019, 2, 10, 0, 0, 0),
                 description: "core i11 9999k, rtx 4090ti, 256gb ram, 32tb m.2 ssd, 8k 3000hz panel",
                 price: 120.2,
-                amazonPrice: 100000000000020.2,
                 sold: false,
             },
         ];
     }
 
-    getInquiries() {
+    getAllInquiries() {
         return [
             {
                 id: 1,
@@ -157,13 +168,64 @@ class App extends React.Component {
     selectItem(item) {
         let newState = this.state;
         newState.selectedItem = item;
+        newState.selectedInquiry = null;
+        newState.inquiries = newState.allInquiries.filter(inq => {
+            return inq.postName == newState.items[newState.selectedItem].name;
+        });
+        newState.addingItem = false;
+        newState.message = null;
         this.setState(newState);
     }
-
+    deselectItems() {
+        let newState = this.state;
+        newState.selectedItem = null;
+        newState.selectedInquiry = null;
+        newState.inquiries = [];
+        newState.addingItem = false;
+        newState.message = null;
+        this.setState(newState);
+    }
+    addItem() {
+        let newState = this.state;
+        newState.selectedItem = null;
+        newState.selectedInquiry = null;
+        newState.inquiries = [];
+        newState.addingItem = true;
+        newState.message = null;
+        this.setState(newState);
+    }
     selectInquiry(inq) {
         let newState = this.state;
         newState.selectedInquiry = inq;
+        newState.addingItem = false;
+        newState.message = null;
         this.setState(newState);
+    }
+    deselectInquiries() {
+        let newState = this.state;
+        newState.selectedInquiry = null;
+        newState.addingItem = false;
+        newState.message = null;
+        this.setState(newState);
+    }
+
+    messChange(str) {
+        let newState = this.state;
+        newState.message = str;
+        this.setState(newState);
+    }
+    messClick() {
+        let newState = this.state;
+        console.log(this.state.message)
+        // delete inquiry ajax
+        newState.message = null;
+        delete newState.inquiries[newState.selectedInquiry];
+        this.setState(newState);
+        console.log(this.state.inquiries)
+    }
+
+    submitItem() {
+
     }
 
     render() {
@@ -187,12 +249,23 @@ class App extends React.Component {
             burgerActive={this.state.burgerActive}
         />
         <ViewPort
+            setState={(state) => this.setState(state)}
             items={this.state.items}
             selectedItem={this.state.selectedItem}
+            deselectItems={this.deselectItems.bind(this)}
+            newItem={this.state.newItem}
+            addingItem={this.state.addingItem}
+            validItem={this.state.validItem}
             selectItem={this.selectItem.bind(this)}
+            addItem={this.addItem.bind(this)}
+            submitItem={this.submitItem.bind(this)}
             inquiries={this.state.inquiries}
             selectedInquiry={this.state.selectedInquiry}
             selectInquiry={this.selectInquiry.bind(this)}
+            deselectInquiries={this.deselectInquiries.bind(this)}
+            messChange={this.messChange.bind(this)}
+            messClick={this.messClick.bind(this)}
+            message={this.state.message}
         />
         </div>
         );
@@ -419,28 +492,122 @@ function NavbarEnd(props) {
 class ViewPort extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            maxNameLength: 20,
+            maxDescLength: 300,
+        }
+    }
+    
+    itemNameChange(str) {
+        let { newItem, validItem } = this.props;
+        $.extend(newItem, {
+            name: str,
+        });
+        $.extend(validItem, {
+            name: str ? (str.length < this.state.maxNameLength) : null,
+        });
+        this.props.setState({newItem: newItem, validItem: validItem});
+    }
+    itemDescChange(str) {
+        let { newItem, validItem } = this.props;
+        $.extend(newItem, {
+            description: str,
+        });
+        $.extend(validItem, {
+            description: str ? (str.length < this.state.maxDescLength) : null,
+        });
+        this.props.setState({newItem: newItem, validItem: validItem});
+    }
+    itemDeptChange(str) {
+        let { newItem, validItem } = this.props;
+        $.extend(newItem, {
+            department: str,
+        });
+        $.extend(validItem, {
+            department: str ? (getDepts().filter(dept => {
+                return this.toBareBones(dept.code) == this.toBareBones(str);
+            }).length!=0) : null,
+        });
+        this.props.setState({newItem: newItem, validItem: validItem});
+    }
+    itemNumChange(str) {
+        let { newItem, validItem } = this.props;
+        $.extend(newItem, {
+            number: str,
+        });
+        $.extend(validItem, {
+            number: str.length!=0?true:null,
+        });
+        this.props.setState({newItem: newItem, validItem: validItem});
+    }
+    itemPriceChange(str) {
+        let { newItem, validItem } = this.props;
+        $.extend(newItem, {
+            price: str,
+        });
+        $.extend(validItem, {
+            price: str ? (!isNaN(str) && (parseFloat(str)!=NaN)) : null,
+        })
+        this.props.setState({newItem: newItem, validItem: validItem});
+    }
+    itemSubmit() {
+        if (this.props.validItem) {
+            this.props.submitItem();
+        }
+    }
+
+    toBareBones(str) {
+        if (!str) return str;
+        return str.toLowerCase().replace(/ /g, '').replace(/-/g, '').replace(/_/g, '');
     }
 
     render() {
+        const { addingItem } = this.props;
+
         return (
             <div className="viewport columns" style={{paddingTop: $(".navbar").css("height")}}>
-                <div className="column is-2">
                 <ItemsView
                     items={this.props.items}
                     selectItem={this.props.selectItem}
+                    deselectItems={this.props.deselectItems}
+                    selectedItem={this.props.selectedItem}
+                    addItem={this.props.addItem}
+                    addingItem={this.props.addingItem}
                 />
-                </div>
-                <div className="column is-2">
+                {addingItem ?
+                null
+                :
                 <InquiriesView
                     inquiries={this.props.inquiries}
                     selectInquiry={this.props.selectInquiry}
+                    deselectInquiries={this.props.deselectInquiries}
+                    selectedInquiry={this.props.selectedInquiry}
+                    selectedItem={this.props.selectedItem}
+                />}
+                {addingItem ?
+                <AddItemView
+                    handleNameChange={this.itemNameChange.bind(this)}
+                    handleDescChange={this.itemDescChange.bind(this)}
+                    handleDeptChange={this.itemDeptChange.bind(this)}
+                    handleNumChange={this.itemNumChange.bind(this)}
+                    handlePriceChange={this.itemPriceChange.bind(this)}
+                    handleClick={this.itemSubmit.bind(this)}
+                    newItem={this.props.newItem}
+                    validName={this.props.validItem.name}
+                    validDesc={this.props.validItem.description}
+                    validDept={this.props.validItem.department}
+                    validNum={this.props.validItem.number}
+                    validPrice={this.props.validItem.price}
                 />
-                </div>
-                <div className="column is-8 msgCol">
+                :
                 <MessageView
                     inquiry={this.props.selectedInquiry!=null ? this.props.inquiries[this.props.selectedInquiry] : null}
+                    messChange={this.props.messChange}
+                    messClick={this.props.messClick}
+                    message={this.props.message}
                 />
-                </div>
+                }
             </div>
         );
     }
@@ -453,8 +620,10 @@ class ItemsView extends React.Component {
 
     renderNewItemBlock() {
         return (
-            <div className="itemBlock is-new" onClick={() => this.props.addItem()}>
-                <p className="subtitle is-4">New Post</p>
+            <div
+                className={"viewBlock itemBlock is-new".concat(this.props.addingItem?" is-selected":"")}
+                onClick={(e) => {e.stopPropagation(); this.props.addItem()}}>
+                    <p className="subtitle is-4">New Post <span className="icon"><i className="fas fa-plus"></i></span></p>
             </div>
         );
     }
@@ -466,6 +635,7 @@ class ItemsView extends React.Component {
             name={item.name}
             keyprop={key}
             handleClick={this.props.selectItem}
+            selected={this.props.selectedItem == key}
             key={key}
         />
         );
@@ -473,7 +643,7 @@ class ItemsView extends React.Component {
 
     render() {
         return (
-        <div className="itemsView">
+        <div className="column is-2 itemsView" onClick={() => this.props.deselectItems()}>
             {this.renderNewItemBlock()}
             {this.props.items.map((item, key) =>
                 this.renderItemBlock(item, key)
@@ -485,8 +655,10 @@ class ItemsView extends React.Component {
 
 function ItemBlock(props) {
     return (
-    <div className={"itemBlock is-".concat(props.keyprop%2==0?"even":"odd")} onClick={() => props.handleClick(props.keyprop)}>
-        <p className="subtitle is-4">{props.name}</p>
+    <div
+        className={"viewBlock itemBlock is-".concat(props.keyprop%2==0?"even":"odd").concat(props.selected?" is-selected":"")}
+        onClick={(e) => {e.stopPropagation(); props.handleClick(props.keyprop)}}>
+            <p className="subtitle is-4">{props.name}</p>
     </div>
     );
 }
@@ -503,6 +675,7 @@ class InquiriesView extends React.Component {
                 fromUser={inq.fromUser}
                 keyprop={key}
                 handleClick={this.props.selectInquiry}
+                selected={this.props.selectedInquiry == key}
                 key={key}
             />
         )
@@ -510,9 +683,26 @@ class InquiriesView extends React.Component {
 
     render() {
         return (
-            <div className="inquiriesView">
-                {this.props.inquiries.map((inq, key) =>
+            <div className="column is-2 inquiriesView" onClick={() => this.props.deselectInquiries()}>
+                {this.props.inquiries.length!=0 ?
+                this.props.inquiries.map((inq, key) =>
                     this.renderInquiryBlock(inq, key)
+                )
+                :
+                (this.props.selectedItem ?
+                <div className="container blankInq">
+                    <div className="content">
+                        <p className="title is-5">No inquiries</p>
+                        <p className="title is-5">found</p>
+                    </div>
+                </div>
+                :
+                <div className="container blankInq">
+                    <div className="content">
+                        <p className="title is-5">No item</p>
+                        <p className="title is-5">selected</p>
+                    </div>
+                </div>
                 )}
             </div>
         );
@@ -521,8 +711,10 @@ class InquiriesView extends React.Component {
 
 function InquiryBlock(props) {
     return (
-        <div className={"inquiryBlock is-".concat(props.keyprop%2==0?"even":"odd")} onClick={() => props.handleClick(props.keyprop)}>
-            <p className="subtitle is-4">{props.fromUser}</p>
+        <div
+            className={"viewBlock inquiryBlock is-".concat(props.keyprop%2==0?"even":"odd").concat(props.selected?" is-selected":"")}
+            onClick={(e) => {e.stopPropagation(); props.handleClick(props.keyprop)}}>
+                <p className="subtitle is-4">{props.fromUser}</p>
         </div>
     );
 }
@@ -543,7 +735,7 @@ function MessageView(props) {
     }
 
     return (
-        <div className="messageView">
+        <div className="column is-8 messageView">
             {inquiry ?
             <div className="displayMsg">
                 <h1 className="title is-3">{inquiry.postName}</h1>
@@ -554,6 +746,35 @@ function MessageView(props) {
                 <h2 className="title is-5">Phone: {inquiry.phoneNumber ? inquiry.phoneNumber : "N/A"}</h2>
                 <h2 className="title is-5">Email: {inquiry.email ? inquiry.email : "N/A"}</h2>
                 <h4 className="subtitle is-5 msg">{inquiry.message}</h4>
+                <div className="field">
+                    <label className="label">Reply</label>
+                    <div className="control">
+                        <textarea
+                            className="textarea has-fixed-size"
+                            placeholder="e.g. Here's my email: example@example.com"
+                            rows="3"
+                            onChange={(e) => props.messChange($(e.target).val())}
+                            value={props.message?props.message:""}
+                        />
+                    </div>
+                </div>
+                <div className="columns msgLabel-Button">
+                    <div className="column is-10">
+                        <label className="label">This inquiry will be deleted upon sending message</label>
+                    </div>
+                    <div className="column is-2">
+                        <div className="field">
+                            <div className="buttons is-right">
+                                <button
+                                    className="button"
+                                    disabled={!(props.message && props.message.length!=0)}
+                                    onClick={() => props.messClick()}>
+                                        Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             :
             <div className="blankMsg">
@@ -566,6 +787,82 @@ function MessageView(props) {
                 </div>
                 <br /><br />
             </div>}
+        </div>
+    );
+}
+
+function AddItemView(props) {
+    const { validName, validDesc, validDept, validNum, validPrice, newItem } = props;
+    let goodToGo = ((validName && validDesc && validDept && validNum && validPrice) && 
+                    (newItem.name && newItem.description && newItem.department && newItem.number && newItem.price));
+    return (
+        <div className="column is-10 addItemView">
+            <h1 className="title is-2">Create Post</h1>
+            <div className="field">
+                <label className="label">Item Name</label>
+                <div className="control">
+                    <input
+                        className={"input ".concat(validName?"":(validName==false?"is-danger":"is-warning"))}
+                        type="text"
+                        placeholder="e.g. ENGL 105 Workbook"
+                        onChange={(e) => props.handleNameChange($(e.target).val())}
+                    />
+                </div>
+            </div>
+            <div className="field">
+                <label className="label">Description</label>
+                <textarea
+                    className={"textarea has-fixed-size ".concat(validDesc?"":(validName==false?"is-danger":"is-warning"))}
+                    placeholder="e.g. Barely used, no pages missing or written on"
+                    onChange={(e) => props.handleDescChange($(e.target).val())}
+                />
+            </div>
+            <div className="columns dept-num">
+                <div className="column is-4 field">
+                    <label className="label">Department</label>
+                    <div className="control">
+                        <input
+                            className={"input ".concat(validDept?"":(validDept==false?"is-danger":"is-warning"))}
+                            type="text"
+                            placeholder="e.g. ENGL"
+                            onChange={(e) => props.handleDeptChange($(e.target).val())}
+                        />
+                    </div>
+                </div>
+                <div className="column is-1"></div>
+                <div className="column is-4 field">
+                    <label className="label">Number</label>
+                    <div className="control">
+                        <input
+                            className={"input ".concat(validNum?"":(validNum==false?"is-danger":"is-warning"))}
+                            type="text"
+                            placeholder="e.g. 105"
+                            onChange={(e) => props.handleNumChange($(e.target).val())}
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="field">
+                <label className="label">Price</label>
+                <div className="control">
+                    <input
+                        className={"input ".concat(validPrice?"":(validPrice==false?"is-danger":"is-warning"))}
+                        type="text"
+                        placeholder="e.g. any whole or decimal number"
+                        onChange={(e) => props.handlePriceChange($(e.target).val())}
+                    />
+                </div>
+            </div>
+            <div className="field">
+                <div className="control">
+                    <button
+                        className="button"
+                        disabled={!(goodToGo)}
+                        onClick={(e) => props.handleClick($(e.target).val())}>
+                            Submit
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }

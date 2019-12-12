@@ -12,7 +12,7 @@ body {
     position: fixed;
     width: 100%;
     padding: 0 .25em;
-    /* background-color: rgb(59, 63, 66, .95); */
+    background-color: rgb(59, 63, 66, .95);
 }
 
 .navbar-brand img {
@@ -77,63 +77,78 @@ body {
     padding: 0;
 }
 
-.itemsView {
-    height: 100%;
-    background-color: aliceblue;
-}
-
-.itemBlock {
+.viewport .viewBlock {
     height: fit-content;
     text-align: right;
     cursor: pointer;
     padding: .25em;
+    margin: .5em .25em;
+    border-radius: .5em;
     -webkit-user-select: none; /* Safari */        
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
 }
 
-.itemBlock.is-new,
+.viewport .itemsView {
+    height: 100%;
+    padding: .25em;
+    background-color: rgb(59, 63, 66, .95);
+}
+
+.viewBlock {
+    border-left: 6px solid transparent;
+}
+.viewBlock.is-selected {
+    border-left: 6px solid black;
+}
+.itemBlock.is-new {
+    background-color: #4B9CD3;
+}
 .itemBlock.is-new .subtitle {
-    background-color: lightpink;
+    color: whitesmoke;
 }
-.itemBlock.is-even,
-.itemBlock.is-even .subtitle,
-.inquiryBlock.is-even,
-.inquiryBlock.is-even .subtitle {
-    background-color: lightseagreen;
-    color: aliceblue;
+.itemBlock.is-new:hover {
+    background-color: rgb(52, 130, 182);
 }
-.itemBlock.is-odd,
-.itemBlock.is-odd .subtitle,
-.inquiryBlock.is-odd,
-.inquiryBlock.is-odd .subtitle {
-    background-color: lightcyan;
+.viewBlock.is-even {
+    background-color: rgb(175, 216, 245);
 }
-
-.inquiriesView {
-    height: 100%;
-    background-color: aliceblue;
+.viewBlock.is-even:hover {
+    background-color: rgb(138, 193, 230);
+}
+.viewBlock.is-odd {
+    background-color: rgb(241, 247, 252);
+}
+.viewBlock.is-odd:hover {
+    background-color: rgb(216, 226, 233);
 }
 
-.inquiryBlock {
-    height: fit-content;
-    text-align: right;
-    cursor: pointer;
-    padding: .25em;
-    -webkit-user-select: none; /* Safari */        
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
-}
-
-.viewport .msgCol {
-    padding: .25em;
-}
-
-.messageView {
+.viewport .inquiriesView {
     height: 100%;
     padding: .25em;
+    background-color: rgba(87, 94, 99, 0.95);
+}
+
+.blankInq.container {
+    height: 100%;
+    text-align: center;
+    display: table;
+}
+
+
+.blankInq.container .content {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.blankInq .title {
+    margin: .25em !important;
+}
+
+.viewport .messageView {
+    height: 100%;
+    padding: .5em 1em;
 }
 
 .blankMsg {
@@ -150,7 +165,8 @@ body {
 }
 
 .blankMsg img {
-    background-color: gray;
+    /* background-color: gray; */
+    filter: invert(70%);
 }
 
 .displayMsg .from-date {
@@ -165,6 +181,39 @@ body {
 }
 
 .displayMsg .msg.subtitle {
-    padding-top: 1em;
+    padding: 1em 1em 2em 1em;
     margin: 0;
+}
+
+.displayMsg .msgLabel-Button {
+    margin: 0;
+}
+.displayMsg .msgLabel-Button .label {
+    color: palevioletred;
+}
+.displayMsg .button {
+    color: whitesmoke;
+    background-color: #4B9CD3;
+}
+.displayMsg .button:hover {
+    color: whitesmoke;
+    background-color: rgb(52, 133, 187);
+}
+
+.viewport .addItemView {
+    padding: 1% 6%;
+    margin: 0;
+}
+
+.addItemView .dept-num {
+    margin: 0;
+}
+
+.addItemView .button {
+    color: whitesmoke;
+    background-color: #4B9CD3;
+}
+.addItemView .button:hover {
+    color: whitesmoke;
+    background-color: rgb(52, 133, 187);
 }
