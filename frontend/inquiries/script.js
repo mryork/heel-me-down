@@ -895,4 +895,16 @@ function AddItemView(props) {
     );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+function renderSite() {
+    ReactDOM.render(<App />, document.getElementById("root"));
+}
+
+function check() {
+if(id_token) {
+    renderSite()
+} else {
+    setTimeout(() => { check() },500 )
+}
+}
+
+check()
