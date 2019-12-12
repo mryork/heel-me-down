@@ -589,7 +589,7 @@ class ViewPort extends React.Component {
 
     render() {
         const { addingItem } = this.props;
-        if(!id_token) { setTimeout(() => { this.setState({ user: getUser() })}, 5000);  return(<div></div>) }
+        if(!id_token) { setTimeout(() => { this.setState({ user: getUser() })}, 15000);  return(<div></div>) }
         return (
             <div className="viewport columns" style={{paddingTop: $(".navbar").css("height")}}>
                 <ItemsView
