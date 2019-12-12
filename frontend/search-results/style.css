@@ -132,6 +132,11 @@ body {
     height: fit-content;
 }
 
+.listing .notLoggedIn {
+    padding-top: 1em;
+    text-align: center;
+}
+
 .itemImg {
     padding: 0;
     text-align: center;
