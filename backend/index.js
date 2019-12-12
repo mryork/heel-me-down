@@ -85,6 +85,8 @@ app.post("/api/search", (req,res) => {
 app.post("/api/userPosts", (req,res) => {
     const token = req.body.token;
 
+    console.log("Token: " + token)
+
     verifyUser(token).then((obj) => {
         post.find({userID: obj['sub']}).then((p) => {
             res.json(p);

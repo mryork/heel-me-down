@@ -40,7 +40,7 @@ function getUser() {
 async function getPosts(department, number) {
     const data = { department: department, number: number };
 
-    fetch(API_URL + "search", { method: "POST", body: data }).then(ret => {
+    fetch(API_URL + "search", { method: "POST", body: JSON.stringify(data) }).then(ret => {
         return ret;
     })
 }
@@ -48,7 +48,7 @@ async function getPosts(department, number) {
 async function getUserPosts() {
     const data = { token: id_token };
 
-    fetch(API_URL + "userPosts", { method: "POST", body: data }).then(ret => {
+    fetch(API_URL + "userPosts", { method: "POST", body: JSON.stringify(data) }).then(ret => {
         return ret;
     })
 }
@@ -56,7 +56,7 @@ async function getUserPosts() {
 async function getInquiries() {
     const data = { token: id_token };
 
-    fetch(API_URL + "getInquiries", { method: "POST", body: data }).then(ret => {
+    fetch(API_URL + "getInquiries", { method: "POST", body: JSON.stringify(data) }).then(ret => {
         return ret;
     })
 }
@@ -64,7 +64,7 @@ async function getInquiries() {
 async function createPost(name, description, price, department, number) {
     const data = { name: name, description: description, token: id_token, price: price, department: department, number: number, userName: getUser().name };
 
-    fetch(API_URL + "createPost", { method: "POST", body: data }).then(ret => {
+    fetch(API_URL + "createPost", { method: "POST", body: JSON.stringify(data) }).then(ret => {
         return ret;
     })
 }
@@ -72,7 +72,7 @@ async function createPost(name, description, price, department, number) {
 async function createInquiry(postID, message, phone, email) {
     const data = { postID: postID, message: message, phone: phone, email: email, token: id_token };
 
-    fetch(API_URL + "createInquiry", { method: "POST", body: data }).then(ret => {
+    fetch(API_URL + "createInquiry", { method: "POST", body: JSON.stringify(data) }).then(ret => {
         return ret;
     })
 }
@@ -80,7 +80,7 @@ async function createInquiry(postID, message, phone, email) {
 async function deletePost(postID) {
     const data = { postID: postID, token: id_token };
 
-    fetch(API_URL + "deletePost", { method: "POST", body: data }).then(ret => {
+    fetch(API_URL + "deletePost", { method: "POST", body: JSON.stringify(data) }).then(ret => {
         return ret;
     })
 }
@@ -88,7 +88,7 @@ async function deletePost(postID) {
 async function markAsSold(postID) {
     const data = { postID: postID, token: id_token };
 
-    fetch(API_URL + "sold", { method: "POST", body: data }).then(ret => {
+    fetch(API_URL + "sold", { method: "POST", body: JSON.stringify(data) }).then(ret => {
         return ret;
     })
 }
@@ -96,7 +96,7 @@ async function markAsSold(postID) {
 async function markAsUnsold(postID) {
     const data = { postID: postID, token: id_token };
 
-    fetch(API_URL + "unsold", { method: "POST", body: data }).then(ret => {
+    fetch(API_URL + "unsold", { method: "POST", body: JSON.stringify(data) }).then(ret => {
         return ret;
     })
 }
