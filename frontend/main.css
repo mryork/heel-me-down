@@ -40,6 +40,24 @@ h1 {
     color: #FFFFFF;
 }
 
+.autocomp {
+    position: fixed;
+    background-color: rgba(255, 255, 255, .9);
+    color: black;
+    font-size: 10pt;
+    /* border: 1px solid red; */
+    cursor: pointer;
+    z-index: 99;
+}
+
+.autocomp:hover {
+    background-color: rgb(197, 210, 218);
+}
+
+.autocomp.selected {
+    background-color: rgb(169, 222, 243);
+}
+
 #search {
     height: 80%;
 }
