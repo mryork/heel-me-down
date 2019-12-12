@@ -25,7 +25,7 @@ class App extends React.Component {
 
     componentDidMount() {
         let newState = this.state;
-        // newState.user = this.getUser();
+        newState.user = getUser();
         window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
             newState.searchStr = value.slice(0, value.search(/\d/)).toUpperCase().concat(' '+value.slice(value.search(/\d/)));
         });
@@ -49,14 +49,6 @@ class App extends React.Component {
             item = newItem;
         });
         this.setState({items: items, selectedItem: null});
-    }
-
-    getUser() {
-        return {
-            isLoggedIn: true,
-            id: 42069,
-            searchStr: "AMST 125",
-        };
     }
 
     getItems(dept, num) {

@@ -111,6 +111,10 @@ body {
 .itemBlock.is-new:hover {
     background-color: rgb(52, 130, 182);
 }
+.itemBlock.is-new.is-disabled {
+    background-color: rgb(121, 142, 156);
+    cursor: not-allowed;
+}
 .viewBlock.is-even {
     background-color: rgb(175, 216, 245);
 }
@@ -148,7 +152,7 @@ body {
 
 .viewport .messageView {
     height: 100%;
-    padding: .5em 1em;
+    padding: 2em;
 }
 
 .blankMsg {

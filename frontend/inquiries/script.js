@@ -39,7 +39,7 @@ class App extends React.Component {
 
     componentDidMount() {
         let newState = this.state;
-        newState.user = this.getUser();
+        // newState.user = this.getUser();
         newState.items = this.getItems();
         newState.allInquiries = this.getAllInquiries();
         newState.isLoaded = true;
@@ -266,6 +266,7 @@ class App extends React.Component {
             messChange={this.messChange.bind(this)}
             messClick={this.messClick.bind(this)}
             message={this.state.message}
+            user={this.state.user}
         />
         </div>
         );
@@ -567,7 +568,7 @@ class ViewPort extends React.Component {
 
     render() {
         const { addingItem } = this.props;
-
+        
         return (
             <div className="viewport columns" style={{paddingTop: $(".navbar").css("height")}}>
                 <ItemsView
@@ -577,6 +578,7 @@ class ViewPort extends React.Component {
                     selectedItem={this.props.selectedItem}
                     addItem={this.props.addItem}
                     addingItem={this.props.addingItem}
+                    user={this.props.user}
                 />
                 {addingItem ?
                 null
@@ -624,14 +626,15 @@ class ItemsView extends React.Component {
     renderNewItemBlock() {
         return (
             <div
-                className={"viewBlock itemBlock is-new".concat(this.props.addingItem?" is-selected":"")}
-                onClick={(e) => {e.stopPropagation(); this.props.addItem()}}>
+                className={"viewBlock itemBlock is-new".concat(this.props.addingItem?" is-selected":"").concat(!this.props.userLoggedIn?" is-disabled":"")}
+                onClick={(e) => {e.stopPropagation(); this.props.userLoggedIn?this.props.addItem():null}}>
                     <p className="subtitle is-4">New Post <span className="icon"><i className="fas fa-plus"></i></span></p>
             </div>
         );
     }
 
     renderItemBlock(item, key) {
+        console.log(Object.entries(this.props.user).length!=0)
         return (
         <ItemBlock
             id={item.id}
@@ -639,6 +642,7 @@ class ItemsView extends React.Component {
             keyprop={key}
             handleClick={this.props.selectItem}
             selected={this.props.selectedItem == key}
+            userLoggedIn={Object.entries(this.props.user).length!=0}
             key={key}
         />
         );
@@ -749,7 +753,7 @@ function MessageView(props) {
                 <h2 className="title is-5">Phone: {inquiry.phoneNumber ? inquiry.phoneNumber : "N/A"}</h2>
                 <h2 className="title is-5">Email: {inquiry.email ? inquiry.email : "N/A"}</h2>
                 <h4 className="subtitle is-5 msg">{inquiry.message}</h4>
-                <div className="field">
+                {/* <div className="field">
                     <label className="label">Reply</label>
                     <div className="control">
                         <textarea
@@ -777,7 +781,7 @@ function MessageView(props) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
             :
             <div className="blankMsg">
