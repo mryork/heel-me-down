@@ -903,6 +903,11 @@ function check() {
 if(id_token) {
     renderSite()
 } else {
+    gapi.load('auth2', function() {
+        gapi.auth2.init().then(() => {
+            id_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+        });
+      });
     setTimeout(() => { if(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token) { id_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token; } check() },500 )
 }
 }
