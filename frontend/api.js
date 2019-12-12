@@ -54,6 +54,9 @@ function getPosts(department, number) {
 }
 
 function getUserPosts() {
+    if (!id_token) {
+        setTimeout(() => { getUserPosts() }, 500)
+    }
     return new Promise((resolve, rej) => {
         const data = { token: id_token };
 
