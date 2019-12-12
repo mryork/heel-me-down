@@ -31,7 +31,7 @@ class App extends React.Component {
         });
         this.setState(newState);
         let [dept, num] = newState.searchStr.split(' ');
-        this.getItems(dept, num);
+        getPosts(dept, num);
         this.updateWindowDimensions();
         
         window.addEventListener('resize', this.updateWindowDimensions);
