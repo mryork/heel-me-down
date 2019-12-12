@@ -25,11 +25,10 @@ class App extends React.Component {
 
     componentDidMount() {
         let newState = this.state;
-        newState.user = this.getUser();
+        // newState.user = this.getUser();
         window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
             newState.searchStr = value.slice(0, value.search(/\d/)).toUpperCase().concat(' '+value.slice(value.search(/\d/)));
         });
-        console.log(newState.searchStr)
         this.setState(newState);
         let [dept, num] = newState.searchStr.split(' ');
         this.getItems(dept, num);
@@ -161,6 +160,7 @@ class App extends React.Component {
             currPage={currPage}
             itemsPerPage={itemsPerPage}
             totalItems={isLoaded ? items.length : 0}
+            user={this.state.user}
         />
         <Pagination
             setState={(state) => this.setState(state)}
@@ -205,7 +205,8 @@ class Navbar extends React.Component {
         } else if (this.toBareBones(searchStr).length > 4) {
             $(navInput).blur();
             console.log("getItems", searchStr)
-            this.props.getItems(this.toBareBones(searchStr.replace(/[0-9]/g, '')), this.toBareBones(searchStr.replace(/\D/g,'')));
+            let [dept, num] = this.toBareBones(searchStr).slice(0, searchStr.search(/\d/)).toUpperCase().concat(' '+searchStr.slice(searchStr.search(/\d/))).split(' ');
+            this.props.getItems(dept, num);
             this.props.setState({
                 searchSel: searchSel,
             });
@@ -373,6 +374,8 @@ function NavbarEnd(props) {
                         onClick={() => props.inquiries()}>
                             Posts/Inquiries
                     </a>
+                    {Object.entries(props.user).length!=0 ?
+                    <div>
                     <hr className="navbar-divider" />
                     <a
                         className="navbar-item"
@@ -380,6 +383,8 @@ function NavbarEnd(props) {
                         onClick={signOut}>
                             {props.user ? "Log Out" : "Log In"}
                     </a>
+                    </div>
+                    :null}
                     </div>
                     :null}
                 </div>
@@ -413,6 +418,7 @@ class ListView extends React.Component {
                 selectItem={this.selectItem.bind(this)}
                 messChange={(str) => this.props.setState({message: str})}
                 messClick={this.props.messClick}
+                userLoggedIn={Object.entries(this.props.user).length != 0}
                 id={item.id}
                 itemName={item.name}
                 sellerName={item.seller}
@@ -429,6 +435,7 @@ class ListView extends React.Component {
     render() {
         let { items, totalItems, currPage, itemsPerPage } = this.props;
         items = items.slice((currPage-1)*itemsPerPage, currPage*itemsPerPage);
+        console.log(Object.entries(this.props.user).length != 0)
         return (
         <div className="listView" onClick={() => this.props.deselectItems()}>
             <div id="itemCount" className="columns is-centered">
@@ -481,7 +488,7 @@ function ListItem(props) {
                     <div className="desc">{props.description}</div>
                 </div>
             </div>
-            {props.isSelected ? 
+            {props.isSelected && props.userLoggedIn ? 
             <div className="columns is-centered buyItem">
                 <div className="column is-12">
                     <div className="field">
@@ -504,7 +511,13 @@ function ListItem(props) {
                     </div>
                 </div>
             </div>
-            :null}
+            :(props.isSelected ?
+            <div className="container">
+                <div className="content notLoggedIn">
+                    <h1 className="title is-3">You must log in to send a message</h1>
+                </div>
+            </div>
+            :null)}
         </div>
     </div>
     );
