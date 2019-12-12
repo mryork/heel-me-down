@@ -107,6 +107,7 @@ app.post("/api/createPost", (req,res) => {
     const description = req.body.description;
     const department = req.body.department;
     const number = req.body.number;
+    const price = req.body.price;
     const date = Date.now();
     const userName = req.body.userName;
     const sold = false;
@@ -117,7 +118,7 @@ app.post("/api/createPost", (req,res) => {
             if(!u) {
                 user.create({id: id, name: name}).then((u) => {
                     post.create({ name: name, description: description, department: department,
-                        number: number, userName: userName, sold: sold,
+                        number: number, userName: userName, sold: sold, price: price,
                         userID: u.id, date: date, googlePic: obj['picture'] }).then((p) => {
                         res.sendStatus(200);
                     }).catch(() => {
@@ -213,44 +214,45 @@ app.post("/api/createInquiry", (req,res) => {
     const userTo = req.body.to;
     const postID = req.body.postID;
     const date = Date.now();
-    const fromUserImg = req.body.fromUserImg;
 
     verifyUser(token).then((obj) => {
         user.findOne({id: obj['sub']}).then((u) => {
-            if(!u) {
-                user.create({id: id, name: name}).then((u) => {
+            post.findOne({ id: postID }).then((p) => {
+                if(!u) {
+                    user.create({id: id, name: name}).then((u) => {
+                        inquiry.create({
+                            message: message,
+                            phoneNumber: phone,
+                            email: email,
+                            postID: postID,
+                            userTo: p.userID,
+                            userFrom: u.id,
+                            fromUserImg: obj['picture'],
+                            date: date
+                        }).then((p) => {
+                            res.sendStatus(200);
+                        }).catch(() => {
+                            res.sendStatus(400);
+                        })
+                    })
+                } else {
                     inquiry.create({
+                        name: name,
                         message: message,
                         phoneNumber: phone,
                         email: email,
                         postID: postID,
                         userTo: userTo,
                         userFrom: u.id,
-                        fromUserImg: fromUserImg,
+                        fromUserImg: obj['picture'],
                         date: date
                     }).then((p) => {
                         res.sendStatus(200);
                     }).catch(() => {
                         res.sendStatus(400);
                     })
-                })
-            } else {
-                inquiry.create({
-                    name: name,
-                    message: message,
-                    phoneNumber: phone,
-                    email: email,
-                    postID: postID,
-                    userTo: userTo,
-                    userFrom: u.id,
-                    fromUserImg: fromUserImg,
-                    date: date
-                }).then((p) => {
-                    res.sendStatus(200);
-                }).catch(() => {
-                    res.sendStatus(400);
-                })
-            }
+                }
+            })
         })
     })
 })
