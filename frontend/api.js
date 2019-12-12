@@ -37,66 +37,98 @@ function getUser() {
     return user;
 }
 
-async function getPosts(department, number) {
-    const data = { department: department, number: number };
+function getPosts(department, number) {
+    return new Promise((res, rej) => {
+        const data = { department: department, number: number };
 
-    fetch(API_URL + "search", { method: "POST", body: JSON.stringify(data) }).then(ret => {
-        return ret;
+        fetch(API_URL + "search", { method: "POST", body: JSON.stringify(data) }).then(ret => {
+            res(ret)
+        }).catch(() => {
+            rej("err")
+        })
     })
 }
 
-async function getUserPosts() {
-    const data = { token: id_token };
+function getUserPosts() {
+    return new Promise((res, rej) => {
+        const data = { token: id_token };
 
-    fetch(API_URL + "userPosts", { method: "POST", body: JSON.stringify(data) }).then(ret => {
-        return ret;
+        fetch(API_URL + "userPosts", { method: "POST", body: JSON.stringify(data) }).then(ret => {
+            res(ret)
+        }).catch(() => {
+            rej("err")
+        })
     })
 }
 
-async function getInquiries() {
-    const data = { token: id_token };
+function getInquiries() {
+    return new Promise((res, rej) => {
+        const data = { token: id_token };
 
-    fetch(API_URL + "getInquiries", { method: "POST", body: JSON.stringify(data) }).then(ret => {
-        return ret;
+        fetch(API_URL + "getInquiries", { method: "POST", body: JSON.stringify(data) }).then(ret => {
+            res(ret);
+        }).catch(() => {
+            rej("err")
+        })
     })
 }
 
-async function createPost(name, description, price, department, number) {
-    const data = { name: name, description: description, token: id_token, price: price, department: department, number: number, userName: getUser().name };
+function createPost(name, description, price, department, number) {
+    return new Promise((res, rej) => {
+        const data = { name: name, description: description, token: id_token, price: price, department: department, number: number, userName: getUser().name };
 
-    fetch(API_URL + "createPost", { method: "POST", body: JSON.stringify(data) }).then(ret => {
-        return ret;
+        fetch(API_URL + "createPost", { method: "POST", body: JSON.stringify(data) }).then(ret => {
+            res(ret);
+        }).catch(() => {
+            rej("err")
+        })
     })
 }
 
-async function createInquiry(postID, message, phone, email) {
-    const data = { postID: postID, message: message, phone: phone, email: email, token: id_token };
+function createInquiry(postID, message, phone, email) {
+    return new Promise((res,rej) => {
+        const data = { postID: postID, message: message, phone: phone, email: email, token: id_token };
 
-    fetch(API_URL + "createInquiry", { method: "POST", body: JSON.stringify(data) }).then(ret => {
-        return ret;
+        fetch(API_URL + "createInquiry", { method: "POST", body: JSON.stringify(data) }).then(ret => {
+            res(ret);
+        }).catch(() => {
+            rej("err")
+        })
     })
 }
 
-async function deletePost(postID) {
-    const data = { postID: postID, token: id_token };
+function deletePost(postID) {
+    return new Promise((res, rej) => {
+        const data = { postID: postID, token: id_token };
 
-    fetch(API_URL + "deletePost", { method: "POST", body: JSON.stringify(data) }).then(ret => {
-        return ret;
+        fetch(API_URL + "deletePost", { method: "POST", body: JSON.stringify(data) }).then(ret => {
+            res(ret);
+        }).catch(() => {
+            rej('err')
+        })
     })
 }
 
-async function markAsSold(postID) {
-    const data = { postID: postID, token: id_token };
+function markAsSold(postID) {
+    return new Promise((res, rej) => {
+        const data = { postID: postID, token: id_token };
 
-    fetch(API_URL + "sold", { method: "POST", body: JSON.stringify(data) }).then(ret => {
-        return ret;
+        fetch(API_URL + "sold", { method: "POST", body: JSON.stringify(data) }).then(ret => {
+            res(ret);
+        }).catch(() => {
+            rej("err");
+        })
     })
 }
 
-async function markAsUnsold(postID) {
-    const data = { postID: postID, token: id_token };
+function markAsUnsold(postID) {
+    return new Promise((res, rej) => {
+        const data = { postID: postID, token: id_token };
 
-    fetch(API_URL + "unsold", { method: "POST", body: JSON.stringify(data) }).then(ret => {
-        return ret;
+        fetch(API_URL + "unsold", { method: "POST", body: JSON.stringify(data) }).then(ret => {
+            res(ret);
+        }).catch(() => {
+            rej("err")
+        })
     })
 }
