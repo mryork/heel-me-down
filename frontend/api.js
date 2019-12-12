@@ -32,9 +32,10 @@ function isSignedIn() {
 }
 
 // API Information
-const API_URL = "http://heel-me-down-mryork.cloudapps.unc.edu/api/"
+const API_URL = "http://localhost:8080/api/"
 
 function getUser() {
+    user.name = "John Doe";
     return user;
 }
 

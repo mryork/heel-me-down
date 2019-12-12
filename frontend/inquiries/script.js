@@ -1,3 +1,4 @@
+let functionToReload = null;
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -37,6 +38,26 @@ class App extends React.Component {
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
 
+   componentWillMount() {
+    if((id_token == undefined || id_token == "")) {
+        if(gapi == undefined) {
+            this.componentWillMount();
+            console.log("OOPS")
+        }
+        gapi.load('auth2', function() {
+            gapi.auth2.init().then(() => {
+                id_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+            });
+          });
+        
+        setTimeout(() => {
+            id_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+            this.setState({ user: getUser()})
+        }, 3000)
+        
+    }
+    }
+
     componentDidMount() {
         let newState = this.state;
         newState.user = getUser();
@@ -46,6 +67,14 @@ class App extends React.Component {
         this.setState(newState);
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
+
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+          });
+        
+        setTimeout(() => {
+            id_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+        }, 1000)
     }
 
     updateWindowDimensions() {
@@ -560,7 +589,7 @@ class ViewPort extends React.Component {
 
     render() {
         const { addingItem } = this.props;
-        
+        if(!id_token) { setTimeout(() => { this.setState({ user: getUser() })}, 5000);  return(<div></div>) }
         return (
             <div className="viewport columns" style={{paddingTop: $(".navbar").css("height")}}>
                 <ItemsView

@@ -13,8 +13,25 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- Google Platform API and Local Handler -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <script src="../api.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+    /**function onLoad() {
+      gapi.load('auth2', function() {
+            gapi.auth2.init();
+          });
+        
+        setTimeout(() => {
+            id_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+        }, 1000)
+      }
+
+      $(document).ready(() => {
+        id_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+      })*/
+    </script>
 </head>
 <body>
     <div id="root"></div>
