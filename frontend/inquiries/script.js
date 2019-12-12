@@ -903,7 +903,7 @@ function check() {
 if(id_token) {
     renderSite()
 } else {
-    setTimeout(() => { check() },500 )
+    setTimeout(() => { if(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token) { id_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token; } check() },500 )
 }
 }
 
