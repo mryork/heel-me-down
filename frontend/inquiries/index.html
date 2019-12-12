@@ -13,16 +13,8 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- Google Platform API and Local Handler -->
-    <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="../api.js"></script>
-
-    <script>
-      window.onLoadCallback = function(){
-        gapi.auth2.init({
-            client_id: '99875682429-69chpnsjo1jnlb9o0iivqjv7ghjbirrp.apps.googleusercontent.com'
-          });
-      }
-      </script>
 </head>
 <body>
     <div id="root"></div>
