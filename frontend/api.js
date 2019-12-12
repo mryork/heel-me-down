@@ -38,107 +38,100 @@ function getUser() {
 }
 
 function getPosts(department, number) {
-    return new Promise((res, rej) => {
+    return new Promise((resolve, rej) => {
         const data = { department: department, number: number };
 
         fetch(API_URL + "search", { method: "POST", headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }, body: JSON.stringify(data) }).then(ret => {
-            res(ret.body)
-        }).catch(() => {
-            rej("err")
-        })
+          }, body: JSON.stringify(data) }).then((res) => {
+            return res.json();
+        }).then((res) => {
+            resolve(res);
+        });
     })
 }
 
 function getUserPosts() {
-    return new Promise((res, rej) => {
+    return new Promise((resolve, rej) => {
         const data = { token: id_token };
 
         fetch(API_URL + "userPosts", { method: "POST", headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }, body: JSON.stringify(data) }).then(ret => {
-            res(ret.body)
-        }).catch(() => {
-            rej("err")
-        })
+          }, body: JSON.stringify(data) }).then((res) => {
+            return res.json();
+        }).then((res) => {
+            resolve(res);
+        });
     })
 }
 
 function getInquiries() {
-    return new Promise((res, rej) => {
+    return new Promise((resolve, rej) => {
         const data = { token: id_token };
 
         fetch(API_URL + "getInquiries", { method: "POST", headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }, body: JSON.stringify(data) }).then(ret => {
-            res(ret.body);
-        }).catch(() => {
-            rej("err")
-        })
+          }, body: JSON.stringify(data) }).then((res) => {
+            return res.json();
+        }).then((res) => {
+            resolve(res);
+        });
     })
 }
 
 function createPost(name, description, price, department, number) {
-    return new Promise((res, rej) => {
+    return new Promise((resolve, rej) => {
         const data = { name: name, description: description, token: id_token, price: price, department: department, number: number, userName: getUser().name };
 
         fetch(API_URL + "createPost", { method: "POST", headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }, body: JSON.stringify(data) }).then(ret => {
-            res(ret.body);
-        }).catch(() => {
-            rej("err")
-        })
+          }, body: JSON.stringify(data) }).then((res) => {
+            return res.json();
+        }).then((res) => {
+            resolve(res);
+        });
     })
 }
 
 function createInquiry(postID, message, phone, email) {
-    return new Promise((res,rej) => {
+    return new Promise((resolve,rej) => {
         const data = { postID: postID, message: message, phone: phone, email: email, token: id_token };
 
         fetch(API_URL + "createInquiry", { method: "POST", headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }, body: JSON.stringify(data) }).then(ret => {
-            res(ret.body);
-        }).catch(() => {
-            rej("err")
-        })
+          }, body: JSON.stringify(data) }).then((res) => {
+            return res.json();
+        }).then((res) => {
+            resolve(res);
+        });
     })
 }
 
 function deletePost(postID) {
-    return new Promise((res, rej) => {
+    return new Promise((resolve, rej) => {
         const data = { postID: postID, token: id_token };
 
         fetch(API_URL + "deletePost", { method: "POST", headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }, body: JSON.stringify(data) }).then(ret => {
-            res(ret.body);
-        }).catch(() => {
-            rej('err')
-        })
+          }, body: JSON.stringify(data) }).then((res) => {
+            return res.json();
+        }).then((res) => {
+            resolve(res);
+        });
     })
 }
 
 function markAsSold(postID) {
-    return new Promise((res, rej) => {
+    return new Promise((resolve, rej) => {
         const data = { postID: postID, token: id_token };
 
         fetch(API_URL + "sold", { method: "POST", headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }, body: JSON.stringify(data) }).then(ret => {
-            res(ret.body);
-        }).catch(() => {
-            rej("err");
-        })
+          }, body: JSON.stringify(data) }).then((res) => {
+            return res.json();
+        }).then((res) => {
+            resolve(res);
+        });
     })
 }
 
@@ -147,12 +140,11 @@ function markAsUnsold(postID) {
         const data = { postID: postID, token: id_token };
 
         fetch(API_URL + "unsold", { method: "POST", headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }, body: JSON.stringify(data) }).then(ret => {
-            res(ret.body);
-        }).catch(() => {
-            rej("err")
-        })
+          }, body: JSON.stringify(data) }).then((resp) => {
+            return resp.json();
+        }).then((resp) => {
+            res(resp);
+        });
     })
 }
