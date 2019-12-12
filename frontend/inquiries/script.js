@@ -39,9 +39,9 @@ class App extends React.Component {
 
     componentDidMount() {
         let newState = this.state;
-        // newState.user = this.getUser();
-        newState.items = this.getItems();
-        newState.allInquiries = this.getAllInquiries();
+        newState.user = getUser();
+        newState.items = getUserPosts();
+        newState.allInquiries = getInquiries();
         newState.isLoaded = true;
         this.setState(newState);
         this.updateWindowDimensions();
@@ -50,14 +50,6 @@ class App extends React.Component {
 
     updateWindowDimensions() {
         this.setState({ width: window.innerWidth, height: window.innerHeight });
-    }
-
-    getUser() {
-        return {
-            isLoggedIn: true,
-            id: 42069,
-            searchStr: "AMST 125",
-        };
     }
 
     getItems() {
@@ -456,10 +448,10 @@ function NavbarMenu(props) {
 function NavbarEnd(props) {
     return (
     <div className="navbar-end">
-        { props.user.isLoggedIn ?
+        { props.user.name != null ?
         <div className="navbar-item">
             <div className="navbar-item">
-                <h2 className="greeting">Hello, {props.user.id}</h2>
+                <h2 className="greeting">Hello, {props.user.name}</h2>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link" onClick={() => props.toggleOptions()}>
@@ -480,7 +472,7 @@ function NavbarEnd(props) {
                         className="navbar-item"
                         href="../index.html"
                         onClick={signOut}>
-                            {props.user ? "Log Out" : "Log In"}
+                            {props.user.name ? "Log Out" : "Log In"}
                     </a>
                     </div>
                     :null}
